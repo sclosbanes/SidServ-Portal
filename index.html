@@ -421,92 +421,70 @@
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // ====== CHATBOT LOGIC ======
+        // ====== GEMINI AI CHATBOT ======
+        const GEMINI_API_KEY = 'AIzaSyC4G7cCGPcFt5vHUTpkIXHeT4HlEtuMYZw';
+        const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+        const SYSTEM_PROMPT = `You are the GMC Portal AI Assistant for General Milling Corporation (GMC). You help employees (called "Genmillers") with questions about company systems, HR policies, IT support, and general workplace queries.
+
+AVAILABLE SYSTEMS ON THE PORTAL:
+1. Gmail - Corporate email at mail.google.com (@genmil.com.ph accounts)
+2. HiTS HRIS - Human Resource Information System at gmchits.genmil.com.ph
+3. SAP S/4HANA - Enterprise Resource Planning system
+4. GatePass - Gate pass requests for taking items in/out of premises
+5. Entry Pass - Visitor and employee entry management
+6. PowerIMS - Information Management System
+7. Google Sheets - Spreadsheets and data collaboration
+8. Support Ticket - IT support ticket system (Google Forms based)
+9. Payroll - Payroll and salary management
+10. Time Tracking - Time and attendance tracking
+11. Expense Management - Expense reporting and reimbursement
+12. Power BI - Business analytics and data visualization
+13. ServiceNow - IT Service Management platform
+14. IT Helpdesk - IT support portal
+15. Confluence - Knowledge base and documentation
+16. Jira - Project management and issue tracking
+17. Company Policies - Company policies and guidelines
+18. Intranet - Internal company intranet
+19. Leave Management - Leave application and absence tracking
+20. Employee Self Service - HR self-service portal
+
+KEY INFORMATION:
+- For IT issues: Submit a Support Ticket or contact IT Helpdesk
+- For leave: Use Leave Management system, select leave type and dates
+- For payslip: Access through Payroll system > My Payslips
+- For gate pass: Use GatePass system, needs supervisor approval
+- For visitor entry: Use Entry Pass, register 24 hours in advance
+- For password reset: Employee Self Service > Security Settings
+- Company holidays: Available in Company Policies section
+
+RULES:
+- Be friendly, helpful, and concise
+- Use emojis occasionally to be approachable
+- If unsure, suggest contacting IT Helpdesk
+- Always direct users to the correct system on the portal
+- Keep responses short (2-4 sentences max)
+- You can answer general questions too, not just GMC-specific ones`;
+
         const chatMessages = document.getElementById('chat-messages');
         const chatInput = document.getElementById('chat-input');
         const chatSendBtn = document.getElementById('chat-send-btn');
         const chatSuggestions = document.getElementById('chat-suggestions');
 
-        // Knowledge base for the chatbot
-        const knowledgeBase = {
-            'leave': {
-                answer: 'To apply for leave, go to the <strong>Leave Management</strong> system from the portal. Click "New Request", select your leave type and dates, then submit for approval. Your manager will be notified automatically.',
-                icon: '📋'
-            },
-            'payslip': {
-                answer: 'You can view your payslip through the <strong>Payroll</strong> system. Navigate to "My Payslips" section, select the month and year, then click "View" or "Download" for a PDF copy.',
-                icon: '💰'
-            },
-            'it request': {
-                answer: 'To raise an IT request, go to the <strong>Support Ticket</strong> system. Click "Create New Ticket", select the category (Hardware, Software, Network, etc.), describe your issue, and submit. You\'ll receive a ticket number for tracking.',
-                icon: '🛠️'
-            },
-            'holiday': {
-                answer: 'The company holiday list is available in the <strong>Company Policies</strong> section under "Holiday Calendar 2025". You can also check it through the <strong>Leave Management</strong> system.',
-                icon: '🗓️'
-            },
-            'password': {
-                answer: 'To reset your password, visit the <strong>Employee Self Service</strong> portal. Click "Forgot Password" or go to Security Settings > Change Password. For email password, contact IT Helpdesk.',
-                icon: '🔐'
-            },
-            'gatepass': {
-                answer: 'Request a gate pass through the <strong>GatePass</strong> system. Fill in the details of items to be taken out, get your supervisor\'s approval, and present the approved pass at the gate.',
-                icon: '🚪'
-            },
-            'entry': {
-                answer: 'For visitor entry, use the <strong>Entry Pass</strong> system. Register the visitor\'s details at least 24 hours in advance. The pass will be sent to the visitor via email.',
-                icon: '🪪'
-            },
-            'gmail': {
-                answer: 'Access your corporate Gmail at <strong>mail.google.com</strong> using your @genmil.com.ph account. For email issues, contact IT Helpdesk via the Support Ticket system.',
-                icon: '📧'
-            },
-            'sap': {
-                answer: 'Access <strong>SAP S/4HANA</strong> through the portal card. For new user access, submit a request through IT Helpdesk. Training materials are available in Confluence.',
-                icon: '📊'
-            },
-            'hello': {
-                answer: 'Hello! 😊 I\'m the GMC Portal Assistant. I can help you with questions about leave, payroll, IT support, gate passes, and more. What would you like to know?',
-                icon: '👋'
-            },
-            'hi': {
-                answer: 'Hi there! 😊 Welcome to GMC Portal. How can I assist you today? I can help with HR queries, IT support, system access, and more.',
-                icon: '👋'
-            },
-            'thank': {
-                answer: 'You\'re welcome! 😊 Feel free to ask if you need anything else. I\'m here to help!',
-                icon: '🙏'
-            }
-        };
-
-        function getResponse(message) {
-            const lower = message.toLowerCase();
-            for (const [key, value] of Object.entries(knowledgeBase)) {
-                if (lower.includes(key)) {
-                    return value;
-                }
-            }
-            return {
-                answer: 'I\'m not sure about that, but I can help with questions about <strong>leave applications, payslips, IT requests, gate passes, entry passes, holidays</strong>, and other GMC systems. Try asking about one of those topics! 😊',
-                icon: '🤔'
-            };
-        }
+        // Conversation history for context
+        let conversationHistory = [];
 
         function addMessage(text, isUser) {
             const bubble = document.createElement('div');
             bubble.className = `chat-bubble ${isUser ? 'user' : 'bot'}`;
-            
             if (!isUser) {
                 bubble.innerHTML = `
                     <div class="chat-avatar"><i data-lucide="bot"></i></div>
                     <div class="chat-text"><p>${text}</p></div>
                 `;
             } else {
-                bubble.innerHTML = `
-                    <div class="chat-text"><p>${text}</p></div>
-                `;
+                bubble.innerHTML = `<div class="chat-text"><p>${text}</p></div>`;
             }
-            
             chatMessages.appendChild(bubble);
             lucide.createIcons();
             chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -519,9 +497,7 @@
             typing.innerHTML = `
                 <div class="chat-avatar"><i data-lucide="bot"></i></div>
                 <div class="chat-text">
-                    <div class="typing-dots">
-                        <span></span><span></span><span></span>
-                    </div>
+                    <div class="typing-dots"><span></span><span></span><span></span></div>
                 </div>
             `;
             chatMessages.appendChild(typing);
@@ -530,31 +506,69 @@
         }
 
         function removeTypingIndicator() {
-            const indicator = document.getElementById('typing-indicator');
-            if (indicator) indicator.remove();
+            const el = document.getElementById('typing-indicator');
+            if (el) el.remove();
         }
 
-        function handleSend() {
+        async function getGeminiResponse(userMessage) {
+            conversationHistory.push({ role: 'user', parts: [{ text: userMessage }] });
+
+            const requestBody = {
+                system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+                contents: conversationHistory,
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 300,
+                }
+            };
+
+            try {
+                const response = await fetch(GEMINI_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
+
+                const data = await response.json();
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that. Please try again.";
+                
+                conversationHistory.push({ role: 'model', parts: [{ text: aiText }] });
+
+                // Keep history manageable (last 20 messages)
+                if (conversationHistory.length > 20) {
+                    conversationHistory = conversationHistory.slice(-20);
+                }
+
+                return aiText;
+            } catch (error) {
+                console.error('Gemini API Error:', error);
+                return "⚠️ I'm having trouble connecting right now. Please try again in a moment, or contact IT Helpdesk for immediate assistance.";
+            }
+        }
+
+        async function handleSend() {
             const text = chatInput.value.trim();
             if (!text) return;
 
-            // Hide suggestions after first message
-            if (chatSuggestions) {
-                chatSuggestions.style.display = 'none';
-            }
+            if (chatSuggestions) chatSuggestions.style.display = 'none';
 
             addMessage(text, true);
             chatInput.value = '';
+            chatInput.disabled = true;
+            chatSendBtn.disabled = true;
 
-            // Show typing indicator
             showTypingIndicator();
 
-            // Simulate response delay
-            setTimeout(() => {
-                removeTypingIndicator();
-                const response = getResponse(text);
-                addMessage(`${response.icon} ${response.answer}`, false);
-            }, 800 + Math.random() * 600);
+            const response = await getGeminiResponse(text);
+
+            removeTypingIndicator();
+            addMessage(response, false);
+
+            chatInput.disabled = false;
+            chatSendBtn.disabled = false;
+            chatInput.focus();
         }
 
         chatSendBtn.addEventListener('click', handleSend);
@@ -562,7 +576,6 @@
             if (e.key === 'Enter') handleSend();
         });
 
-        // Suggestion chips
         document.querySelectorAll('.suggestion-chip').forEach(chip => {
             chip.addEventListener('click', () => {
                 chatInput.value = chip.dataset.question;
@@ -577,24 +590,14 @@
             document.querySelectorAll('.sys-card').forEach(card => {
                 const name = card.querySelector('.sys-info h3').textContent.toLowerCase();
                 const desc = card.querySelector('.sys-info p').textContent.toLowerCase();
-                if (name.includes(query) || desc.includes(query)) {
-                    card.style.display = '';
-                    card.style.opacity = '1';
-                } else {
-                    card.style.display = query ? 'none' : '';
-                    card.style.opacity = '1';
-                }
+                card.style.display = (!query || name.includes(query) || desc.includes(query)) ? '' : 'none';
             });
         });
 
         // ====== NAVBAR SCROLL EFFECT ======
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 10) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 10);
         });
     </script>
 </body>

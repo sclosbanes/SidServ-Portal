@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMC Portal - Welcome Genmillers</title>
+    <meta name="description" content="General Milling Corporation Internal Portal - Your central hub for all GMC systems and services.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ========== TOP NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-brand">
+                <img src="logo.png" alt="General Milling Corporation" class="navbar-logo">
+            </div>
+            <div class="navbar-right">
+                <div class="search-box">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search this portal...">
+                </div>
+                <button class="icon-btn" id="notif-btn">
+                    <i data-lucide="bell"></i>
+                    <span class="notif-dot"></span>
+                </button>
+                <div class="user-avatar">GM</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO BANNER ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome,<br><span class="hero-accent">Genmillers!</span></h1>
+            <div class="hero-underline"></div>
+            <p class="hero-sub">One portal. All the tools.<br>Everything you need to do your best work.</p>
+        </div>
+    </section>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-wrapper">
+        <div class="content-grid">
+
+            <!-- LEFT COLUMN: Systems -->
+            <div class="systems-column">
+                <h2 class="section-label">SYSTEMS</h2>
+                <div class="cards-grid">
+
+                    <!-- HiTS HRIS -->
+                    <a href="http://gmchits.genmil.com.ph" target="_blank" class="sys-card" id="card-hits">
+                        <div class="sys-icon blue">
+                            <i data-lucide="bar-chart-2"></i>
+                        </div>
+                        <div class="sys-info">
+                            <h3>HiTS HRIS</h3>
+                            <p>Human Resource<br>Information System</p>
+                        </div>
+                        <div class="sys-arrow"><i data-lucide="arrow-right"></i></div>
+                    </a>
+
+                    <!-- Entry Pass -->
+                    <a href="#" class="sys-card" id="card-entrypass">
+                        <div class="sys-icon green">
+                            <i data-lucide="log-in"></i>
+                        </div>
+                        <div class="sys-info">
+                            <h3>Entrypass</h3>
+                            <p>Employee & Visitor<br>Entry Management</p>
+                        </div>
+                        <div class="sys-arrow"><i data-lucide="arrow-right"></i></div>
+                    </a>
+
+                    <!-- Gatepass -->
+                    <a href="#" class="sys-card" id="card-gatepass">
+                        <div class="sys-icon amber">
+                            <i data-lucide="door-open"></i>
+                        </div>
+                        <div class="sys-info">
+                            <h3>Gatepass</h3>
+                            <p>Gate Pass Request<br>and Management</p>
+                        </div>
+                        <div class="sys-arrow"><i data-lucide="arrow-right"></i></div>
+                    </a>
+
+                    <!-- Directory / Telephone -->
+                    <a href="#" class="sys-card" id="card-directory">
+                        <div class="sys-icon orange">
+                            <i data-lucide="phone-call"></i>
+                        </div>
+                        <div class="sys-info">
+                            <h3>Directory</h3>
+                            <p>Search and connect<br>across GMC</p>
+                        </div>
+                        <div class="sys-arrow"><i data-lucide="arrow-right"></i></div>
+                    </a>
+
+                    <!-- Support Ticket -->
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqv4cQ5Pev5Xg4IqDaZNhYx7aZvzYNIPPk0lQG5bkT4M15sA/viewform" target="_blank" class="sys-card" id="card-ticket">
+                        <div class="sys-icon coral">
+                            <i data-lucide="headphones"></i>
+                        </div>
+                        <div class="sys-info">
+                            <h3>Support Ticket</h3>
+                            <p>Raise, track and resolve<br>IT and system issues</p>
+                        </div>
+                        <div class="sys-arrow"><i data-lucide="arrow-right"></i></div>
+                    </a>
+
+                    <!-- Email Search -->
+                    <a href="#" class="sys-card" id="card-email">
+                        <div class="sys-icon indigo">
+                            <i data-lucide="mail-search"></i>
+                        </div>
+                        <div class="sys-info">
+                            <h3>Email Search</h3>
+                            <p>Search email address list<br>of all GMC</p>
+                        </div>
+                        <div class="sys-arrow"><i data-lucide="arrow-right"></i></div>
+                    </a>
+
+                    <!-- Gmail -->
+                    <a href="https://gmail.com" target="_blank" class="sys-card" id="card-gmail">
+                        <div class="sys-icon red">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <div class="sys-info">
+                            <h3>Corporate Mail</h3>
+                            <p>Access your GMC<br>Gmail account</p>
+                        </div>
+                        <div class="sys-arrow"><i data-lucide="arrow-right"></i></div>
+                    </a>
+
+                    <!-- PowerIMS -->
+                    <a href="#" class="sys-card" id="card-powerims">
+                        <div class="sys-icon purple">
+                            <i data-lucide="zap"></i>
+                        </div>
+                        <div class="sys-info">
+                            <h3>PowerIMS</h3>
+                            <p>Information<br>Management System</p>
+                        </div>
+                        <div class="sys-arrow"><i data-lucide="arrow-right"></i></div>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Announcements + Quick Help -->
+            <aside class="sidebar-column">
+
+                <!-- Announcements -->
+                <div class="sidebar-card" id="announcements-card">
+                    <div class="sidebar-card-header">
+                        <div class="sidebar-card-title">
+                            <i data-lucide="megaphone"></i>
+                            <h3>ANNOUNCEMENTS</h3>
+                        </div>
+                        <a href="#" class="view-all">View all <i data-lucide="chevron-right"></i></a>
+                    </div>
+                    <ul class="announce-list">
+                        <li>
+                            <span class="dot blue"></span>
+                            <div class="announce-content">
+                                <h4>GMC Townhall Meeting – May 2025</h4>
+                                <p>Join us for the monthly townhall meeting.</p>
+                            </div>
+                            <span class="announce-date">May 20, 2025</span>
+                        </li>
+                        <li>
+                            <span class="dot green"></span>
+                            <div class="announce-content">
+                                <h4>New Security Policy Reminder</h4>
+                                <p>Please review the updated security guidelines.</p>
+                            </div>
+                            <span class="announce-date">May 15, 2025</span>
+                        </li>
+                        <li>
+                            <span class="dot blue"></span>
+                            <div class="announce-content">
+                                <h4>HR Advisory: Benefits Enrollment</h4>
+                                <p>Benefits enrollment is now open.</p>
+                            </div>
+                            <span class="announce-date">May 10, 2025</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Help -->
+                <div class="sidebar-card" id="quickhelp-card">
+                    <div class="sidebar-card-header">
+                        <div class="sidebar-card-title">
+                            <i data-lucide="life-buoy"></i>
+                            <h3>QUICK HELP</h3>
+                        </div>
+                    </div>
+                    <div class="quickhelp-body">
+                        <h4>Need assistance?</h4>
+                        <p>Visit the Support Ticket system or contact IT Service Desk.</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeqv4cQ5Pev5Xg4IqDaZNhYx7aZvzYNIPPk0lQG5bkT4M15sA/viewform" target="_blank" class="btn-help" id="btn-create-ticket">
+                            Create a Support Ticket <i data-lucide="arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="logo.png" alt="General Milling Corporation" class="footer-logo">
+            </div>
+            <p class="footer-copy">&copy; 2025 General Milling Corporation. All rights reserved.</p>
+            <p class="footer-tagline">We nourish communities. &nbsp;|&nbsp; <span>We are Genmillers.</span></p>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
