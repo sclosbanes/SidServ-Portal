@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "import:genmil-memory": "node scripts/import-genmil-memory.mjs",
+    "import:directory": "node scripts/import-directory-memory.mjs",
     "upload:memory": "node scripts/upload-openai-memory.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

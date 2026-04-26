@@ -1,0 +1,1819 @@
+{
+  "title": "GMCLAPU PLANT - Telephone Directories",
+  "source": "Directory/2025 Telephone Directory - Cebu.csv",
+  "generatedAt": "2026-04-26T09:37:10.340Z",
+  "entries": [
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2800",
+      "name": "GUY"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-IMPEX",
+      "localNumber": "2536",
+      "name": "N. Gahay"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2590",
+      "name": "H. Debalucos"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - LOADING AREA",
+      "localNumber": "2327",
+      "name": "Flour Loading"
+    },
+    {
+      "site": "Cebu",
+      "department": "TECHNICAL SERVICES DEPT",
+      "localNumber": "2734",
+      "name": "VACANT"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2567",
+      "name": "E. Saberon"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2546",
+      "name": "JFFP"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED",
+      "localNumber": "2792",
+      "name": "R. Torreon"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-IMPEX",
+      "localNumber": "2537",
+      "name": "H. Bihag"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2571",
+      "name": "(VACANT)"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - LOADING AREA",
+      "localNumber": "2362",
+      "name": "M3 Feeds"
+    },
+    {
+      "site": "Cebu",
+      "department": "TECHNICAL SERVICES DEPT",
+      "localNumber": "2633",
+      "name": "J. Bordon"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2568",
+      "name": "Command center -CCTV OPS"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2539",
+      "name": "KUY"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED",
+      "localNumber": "2585",
+      "name": "F. Villason"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-IMPEX",
+      "localNumber": "2538",
+      "name": "C. Salisid"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2576",
+      "name": "E. Juranes"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - LOADING AREA",
+      "localNumber": "2363",
+      "name": "M3 Flour"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2569",
+      "name": "Command Center"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2548",
+      "name": "EYK"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED",
+      "localNumber": "2791",
+      "name": "J. Rebusa"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-IMPEX",
+      "localNumber": "2551",
+      "name": "S. De Rueda"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2577",
+      "name": "CM. Cabaero"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - LOADING AREA",
+      "localNumber": "2364",
+      "name": "M3 Flour Analyst"
+    },
+    {
+      "site": "Cebu",
+      "department": "IMS",
+      "localNumber": "2221",
+      "name": "M. Del Rosario"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2444",
+      "name": "Emergency Hotline"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2549",
+      "name": "CGA"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED",
+      "localNumber": "2785",
+      "name": "Vacant"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2559",
+      "name": "S. Carin"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - LOADING AREA",
+      "localNumber": "2850",
+      "name": "S. Cachuela"
+    },
+    {
+      "site": "Cebu",
+      "department": "IMS",
+      "localNumber": "2611",
+      "name": "D. Jotojot"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2500",
+      "name": "Main Gate - Visitor"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2543",
+      "name": "M. Hufana"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED",
+      "localNumber": "2795",
+      "name": "A. Nacar"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-TREASURY",
+      "localNumber": "2542",
+      "name": "M. Gahay"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2570",
+      "name": "R Gonzaga"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - LOADING AREA",
+      "localNumber": "2851",
+      "name": "VACANT"
+    },
+    {
+      "site": "Cebu",
+      "department": "IMS",
+      "localNumber": "2607",
+      "name": "L. Varquez"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2562",
+      "name": "0"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2545",
+      "name": "S. Uy"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED",
+      "localNumber": "2790",
+      "name": "Facility Maint. Group"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-TREASURY",
+      "localNumber": "2531",
+      "name": "M.Tomongha"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2573",
+      "name": "E. Ruadiel"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - LOADING AREA",
+      "localNumber": "2852",
+      "name": "F. Neneria"
+    },
+    {
+      "site": "Cebu",
+      "department": "IMS",
+      "localNumber": "2609",
+      "name": "M. Lavadia"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2563",
+      "name": "Main Entrance Gate"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2420",
+      "name": "Lito Henares"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED",
+      "localNumber": "2704",
+      "name": "Vacant"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-TREASURY",
+      "localNumber": "2533",
+      "name": "Villegas"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2574",
+      "name": "R. Sinto"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - LOADING AREA",
+      "localNumber": "2853",
+      "name": "A. Mendoza"
+    },
+    {
+      "site": "Cebu",
+      "department": "IMS",
+      "localNumber": "2641",
+      "name": "M. Mejias"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2564",
+      "name": "Main Exit Gate"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2544",
+      "name": "L. Alburo"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-TREASURY",
+      "localNumber": "2532",
+      "name": "D. Salvedia"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2560",
+      "name": "K. Espiloy"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2565",
+      "name": "Industrial Gate - Exit"
+    },
+    {
+      "site": "Cebu",
+      "department": "EXECUTIVE",
+      "localNumber": "2703",
+      "name": "LDA"
+    },
+    {
+      "site": "Cebu",
+      "department": "EIG",
+      "localNumber": "2672",
+      "name": "V. Malingin"
+    },
+    {
+      "site": "Cebu",
+      "department": "FINANCE-TREASURY",
+      "localNumber": "2535",
+      "name": "C. Quillano"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2575",
+      "name": "C. Gorgod"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - WHARF OFFICE",
+      "localNumber": "2343",
+      "name": "W. Bustamante"
+    },
+    {
+      "site": "Cebu",
+      "department": "IPM",
+      "localNumber": "2751",
+      "name": "M. Magallanes"
+    },
+    {
+      "site": "Cebu",
+      "department": "SECURITY GROUP",
+      "localNumber": "2566",
+      "name": "Industrial Gate - Entrance"
+    },
+    {
+      "site": "Cebu",
+      "department": "EIG",
+      "localNumber": "2673",
+      "name": "J. Alcotibo"
+    },
+    {
+      "site": "Cebu",
+      "department": "HR-ADMIN DEPARTMENT",
+      "localNumber": "2572",
+      "name": "HR Payroll"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - WHARF OFFICE",
+      "localNumber": "2344",
+      "name": "MGTI Whse 6"
+    },
+    {
+      "site": "Cebu",
+      "department": "IPM",
+      "localNumber": "2752",
+      "name": "C. Songcuan"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2821",
+      "name": "J. Armada"
+    },
+    {
+      "site": "Cebu",
+      "department": "EIG",
+      "localNumber": "2674",
+      "name": "R. Pescador"
+    },
+    {
+      "site": "Cebu",
+      "department": "IPM",
+      "localNumber": "2753",
+      "name": "R. Patlingrao"
+    },
+    {
+      "site": "Cebu",
+      "department": "CONFERENCE ROOMS",
+      "localNumber": "2504",
+      "name": "Executive Board Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2712",
+      "name": "J. Achivida"
+    },
+    {
+      "site": "Cebu",
+      "department": "EIG",
+      "localNumber": "2675",
+      "name": "Vacant"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL OFFICE",
+      "localNumber": "2415",
+      "name": "J. Lamsen"
+    },
+    {
+      "site": "Cebu",
+      "department": "CLINIC",
+      "localNumber": "2589",
+      "name": "S. Sepe"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2312",
+      "name": "F. Bontilao"
+    },
+    {
+      "site": "Cebu",
+      "department": "IPM",
+      "localNumber": "2754",
+      "name": "GAMMA"
+    },
+    {
+      "site": "Cebu",
+      "department": "CONFERENCE ROOMS",
+      "localNumber": "2810",
+      "name": "HR Conference Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2706",
+      "name": "N. Nable"
+    },
+    {
+      "site": "Cebu",
+      "department": "EIG",
+      "localNumber": "2676",
+      "name": "G. Panelag"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL OFFICE",
+      "localNumber": "2418",
+      "name": "A. Lendio"
+    },
+    {
+      "site": "Cebu",
+      "department": "CLINIC",
+      "localNumber": "2578",
+      "name": "Nurse"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2324",
+      "name": "M. Lahaylahay"
+    },
+    {
+      "site": "Cebu",
+      "department": "CONFERENCE ROOMS",
+      "localNumber": "2593",
+      "name": "HR Meeting Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2708",
+      "name": "C. Cacho"
+    },
+    {
+      "site": "Cebu",
+      "department": "EIG",
+      "localNumber": "2671",
+      "name": "EIG SAP Encoder"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL OFFICE",
+      "localNumber": "2410",
+      "name": "K. Flores"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2328",
+      "name": "R. Arceo"
+    },
+    {
+      "site": "Cebu",
+      "department": "CONFERENCE ROOMS",
+      "localNumber": "2215",
+      "name": "Old Admin Minicon"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2502",
+      "name": "R. Espina"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL OFFICE",
+      "localNumber": "2411",
+      "name": "J. Crispe"
+    },
+    {
+      "site": "Cebu",
+      "department": "SAFETY",
+      "localNumber": "2793",
+      "name": "D. Doblas"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2326",
+      "name": "G. Abasolo"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA FEEDS",
+      "localNumber": "2631",
+      "name": "QA Feeds Office"
+    },
+    {
+      "site": "Cebu",
+      "department": "CONFERENCE ROOMS",
+      "localNumber": "2817",
+      "name": "Function Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2556",
+      "name": "C. Durango"
+    },
+    {
+      "site": "Cebu",
+      "department": "EEG",
+      "localNumber": "2784",
+      "name": "J. Castillo"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL OFFICE",
+      "localNumber": "2413",
+      "name": "J. Pinote"
+    },
+    {
+      "site": "Cebu",
+      "department": "SAFETY",
+      "localNumber": "2757",
+      "name": "Safety Staff"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2328",
+      "name": "Flour DR"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA FEEDS",
+      "localNumber": "2634",
+      "name": "K. Arcana"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2705",
+      "name": "G. Endico"
+    },
+    {
+      "site": "Cebu",
+      "department": "EEG",
+      "localNumber": "2794",
+      "name": "R. Tumulak"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL OFFICE",
+      "localNumber": "2414",
+      "name": "J. Largo"
+    },
+    {
+      "site": "Cebu",
+      "department": "SAFETY",
+      "localNumber": "2758",
+      "name": "J. Lagremas"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2329",
+      "name": "L. Palanas"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2707",
+      "name": "K. Campilan"
+    },
+    {
+      "site": "Cebu",
+      "department": "EEG",
+      "localNumber": "2683",
+      "name": "Electrical Shop"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2391",
+      "name": "M. Dimpas"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA FLOUR",
+      "localNumber": "2619",
+      "name": "QA FGQC"
+    },
+    {
+      "site": "Cebu",
+      "department": "IT OPERATIONS",
+      "localNumber": "2527",
+      "name": "IT Services - Admin"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2710",
+      "name": "E. Napuli"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2450",
+      "name": "D. Talua"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2321",
+      "name": "J. Suelo"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA FLOUR",
+      "localNumber": "2620",
+      "name": "A. Baljon"
+    },
+    {
+      "site": "Cebu",
+      "department": "IT OPERATIONS",
+      "localNumber": "2528",
+      "name": "IT Services - Admin"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2711",
+      "name": "Accounting Staff"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED OFFICE",
+      "localNumber": "2786",
+      "name": "J. Gicana"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL - ELECTRICAL",
+      "localNumber": "2416",
+      "name": "C. Gorgonio"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2451",
+      "name": "Intake Silo Assistant"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2332",
+      "name": "P. Bongo"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA FLOUR",
+      "localNumber": "2624",
+      "name": "G. Ceniza"
+    },
+    {
+      "site": "Cebu",
+      "department": "IT OPERATIONS",
+      "localNumber": "2526",
+      "name": "Unassigned"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2530",
+      "name": "B. Clamano"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED OFFICE",
+      "localNumber": "2787",
+      "name": "M. Saladaga"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL - ELECTRICAL",
+      "localNumber": "2429",
+      "name": "S. Amodia"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2452",
+      "name": "A. Sullano"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2325",
+      "name": "M. Prado"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA FLOUR",
+      "localNumber": "2625",
+      "name": "I. Evalle"
+    },
+    {
+      "site": "Cebu",
+      "department": "IT OPERATIONS",
+      "localNumber": "2529",
+      "name": "IT Services - Admin"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2713",
+      "name": "J. Loquinte"
+    },
+    {
+      "site": "Cebu",
+      "department": "CED OFFICE",
+      "localNumber": "2581",
+      "name": "M. Sumido"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL - ELECTRICAL",
+      "localNumber": "2681",
+      "name": "Switch Gear Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2453",
+      "name": "A. Acaba"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2390",
+      "name": "VACANT"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA FLOUR",
+      "localNumber": "2626",
+      "name": "QA Flour Lab"
+    },
+    {
+      "site": "Cebu",
+      "department": "IT OPERATIONS",
+      "localNumber": "2218",
+      "name": "IT Services - EIG"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2714",
+      "name": "G. Igot"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2455",
+      "name": "Silo MCC"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2393",
+      "name": "J. Bacolod"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA FLOUR",
+      "localNumber": "2627",
+      "name": "QA Bakeshop"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2715",
+      "name": "L. Gudmalin"
+    },
+    {
+      "site": "Cebu",
+      "department": "PUG",
+      "localNumber": "2580",
+      "name": "Boiler House"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL - MECHANICAL",
+      "localNumber": "2682",
+      "name": "FLM Mechanical"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2456",
+      "name": "E. Yagonia"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - OUTBOUND OFFICE",
+      "localNumber": "2392",
+      "name": "J. Bentulan"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2716",
+      "name": "(Vacant)"
+    },
+    {
+      "site": "Cebu",
+      "department": "PUG",
+      "localNumber": "2582",
+      "name": "J. Pastrano"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL - MECHANICAL",
+      "localNumber": "2684",
+      "name": "A. Repoyla"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2457",
+      "name": "Silo Maintenance"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA PACKAGING",
+      "localNumber": "2608",
+      "name": "D. Arquillano"
+    },
+    {
+      "site": "Cebu",
+      "department": "CANTEEN",
+      "localNumber": "2777",
+      "name": "Canteen - New Admin"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2719",
+      "name": "K. Oberes/Vacant"
+    },
+    {
+      "site": "Cebu",
+      "department": "PUG",
+      "localNumber": "2583",
+      "name": "R. Olarte"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2458",
+      "name": "J. Macasero"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - TRUCKSCALE",
+      "localNumber": "2357",
+      "name": "Truckscale Wharf"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA PACKAGING",
+      "localNumber": "2628",
+      "name": "O. Ventura"
+    },
+    {
+      "site": "Cebu",
+      "department": "CANTEEN",
+      "localNumber": "2579",
+      "name": "Canteen - Main"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2720",
+      "name": "J. Fuerto"
+    },
+    {
+      "site": "Cebu",
+      "department": "PUG",
+      "localNumber": "2584",
+      "name": "Powerhouse MCC"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2227",
+      "name": "FLM Slave Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "INTAKE SILO & WHARF OPS",
+      "localNumber": "2459",
+      "name": "Silo 9th Floor"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - TRUCKSCALE",
+      "localNumber": "2807",
+      "name": "Truckscale Operator"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2721",
+      "name": "R. Dejados"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2228",
+      "name": "FLM Silo Master"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - TRUCKSCALE",
+      "localNumber": "2808",
+      "name": "F. Dacullo"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA RM",
+      "localNumber": "2621",
+      "name": "QA-RMPM"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2722",
+      "name": "R. Diaz"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 1",
+      "localNumber": "2465",
+      "name": "FDM1 Maintenance"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2354",
+      "name": "Flour Premix"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - FEEDS WAREHOUSE",
+      "localNumber": "2348",
+      "name": "Feeds DR Encoder"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA RM",
+      "localNumber": "2622",
+      "name": "M. Zafra"
+    },
+    {
+      "site": "Cebu",
+      "department": "SPEED DIAL",
+      "localNumber": "*991",
+      "name": "GMC Marajo"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2723",
+      "name": "D. Belia (AP)"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 1",
+      "localNumber": "2467",
+      "name": "FDM1 Control Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2421",
+      "name": "FLM Control Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - FEEDS WAREHOUSE",
+      "localNumber": "2349",
+      "name": "Feeds DR Processor"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - FG WAREHOUSE",
+      "localNumber": "2323",
+      "name": "Warehouse 21"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA RM",
+      "localNumber": "2623",
+      "name": "QA-RMPM"
+    },
+    {
+      "site": "Cebu",
+      "department": "SPEED DIAL",
+      "localNumber": "*992",
+      "name": "GMC Makati"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2725",
+      "name": "Ro. Patalinjug"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 1",
+      "localNumber": "2468",
+      "name": "L. Arias"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2422",
+      "name": "FLM MCC"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - FEEDS WAREHOUSE",
+      "localNumber": "2350",
+      "name": "VACANT"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - FG WAREHOUSE",
+      "localNumber": "2334",
+      "name": "Warehouse 14"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA RM",
+      "localNumber": "2629",
+      "name": "E. Ventures"
+    },
+    {
+      "site": "Cebu",
+      "department": "SPEED DIAL",
+      "localNumber": "*993",
+      "name": "GMC CDO"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2726",
+      "name": "R. Conde"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 1",
+      "localNumber": "2470",
+      "name": "J. Olmedo"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2423",
+      "name": "FLM 3rd Floor"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - FEEDS WAREHOUSE",
+      "localNumber": "2351",
+      "name": "K. Monterde"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - FG WAREHOUSE",
+      "localNumber": "2335",
+      "name": "Warehouse 15"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA RM",
+      "localNumber": "2630",
+      "name": "QA-RMPM"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2727",
+      "name": "D. Villa / S. Ramigan"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 1",
+      "localNumber": "2463",
+      "name": "FDM1 Premix"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2424",
+      "name": "FLM 4th Floor"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - FEEDS WAREHOUSE",
+      "localNumber": "2352",
+      "name": "J. Parohinog"
+    },
+    {
+      "site": "Cebu",
+      "department": "QA RM",
+      "localNumber": "2632",
+      "name": "QA-RM Analyst"
+    },
+    {
+      "site": "Cebu",
+      "department": "DIRECT LINES",
+      "localNumber": "(032) 340 2547",
+      "name": "JFFP"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2729",
+      "name": "M. Lora"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 1",
+      "localNumber": "2464",
+      "name": "FDM1 Bagging"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2425",
+      "name": "FLM 5th Floor"
+    },
+    {
+      "site": "Cebu",
+      "department": "PLANNING",
+      "localNumber": "2301",
+      "name": "G. Go"
+    },
+    {
+      "site": "Cebu",
+      "department": "DIRECT LINES",
+      "localNumber": "(032) 495 1026",
+      "name": "EYK"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2731",
+      "name": "A. Enguito"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 1",
+      "localNumber": "2466",
+      "name": "FDM1 Packing"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2426",
+      "name": "FLM Bagging"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - GTO",
+      "localNumber": "2780",
+      "name": "GTO Staff 1"
+    },
+    {
+      "site": "Cebu",
+      "department": "PLANNING",
+      "localNumber": "2302",
+      "name": "C. Tantiado"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FEEDS",
+      "localNumber": "2601",
+      "name": "C. Dueñas"
+    },
+    {
+      "site": "Cebu",
+      "department": "DIRECT LINES",
+      "localNumber": "(032) 341 0287",
+      "name": "Command Center"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2520",
+      "name": "A. Ypanto"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 1",
+      "localNumber": "2469",
+      "name": "FDM1 9th Floor"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR MILL PRODUCTION",
+      "localNumber": "2427",
+      "name": "Flour Specialty"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - GTO",
+      "localNumber": "2781",
+      "name": "GTO J. Book"
+    },
+    {
+      "site": "Cebu",
+      "department": "PLANNING",
+      "localNumber": "2304",
+      "name": "R. Inot"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FEEDS",
+      "localNumber": "2602",
+      "name": "Maricon Pino"
+    },
+    {
+      "site": "Cebu",
+      "department": "DIRECT LINES",
+      "localNumber": "(032) 341 0250",
+      "name": "Power House"
+    },
+    {
+      "site": "Cebu",
+      "department": "ACCOUNTING",
+      "localNumber": "2524",
+      "name": "M. Padilla"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - GTO",
+      "localNumber": "2782",
+      "name": "GTO-MGTI"
+    },
+    {
+      "site": "Cebu",
+      "department": "PLANNING",
+      "localNumber": "2311",
+      "name": "D. Emia"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FEEDS",
+      "localNumber": "2604",
+      "name": "L. Mergal"
+    },
+    {
+      "site": "Cebu",
+      "department": "DIRECT LINES",
+      "localNumber": "(032) 340 2140",
+      "name": "Flour Sales"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2890",
+      "name": "FDM2 Maintenance"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2820",
+      "name": "A. Tendero"
+    },
+    {
+      "site": "Cebu",
+      "department": "PLANNING",
+      "localNumber": "2308",
+      "name": "A. Dumdum"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FEEDS",
+      "localNumber": "2605",
+      "name": "K. Peralta"
+    },
+    {
+      "site": "Cebu",
+      "department": "DIRECT LINES",
+      "localNumber": "(032) 341 0269",
+      "name": "Finance - Treasury"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2891",
+      "name": "FDM2 Mechanical"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2822",
+      "name": "P. Sebullen"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - INBOUND OFFICE",
+      "localNumber": "2324",
+      "name": "M. Lahaylahay"
+    },
+    {
+      "site": "Cebu",
+      "department": "PLANNING",
+      "localNumber": "2309",
+      "name": "E. Fuentes"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FEEDS",
+      "localNumber": "2606",
+      "name": "M. Grace Dealino"
+    },
+    {
+      "site": "Cebu",
+      "department": "ARCM",
+      "localNumber": "2718",
+      "name": "E. Lodovice"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2892",
+      "name": "FDM2 Truck Intake"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2823",
+      "name": "L. Soliano"
+    },
+    {
+      "site": "Cebu",
+      "department": "PLANNING",
+      "localNumber": "2310",
+      "name": "J. Alforque"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FEEDS",
+      "localNumber": "2610",
+      "name": "N. Salimbagat"
+    },
+    {
+      "site": "Cebu",
+      "department": "ARCM",
+      "localNumber": "2510",
+      "name": "T. Capangpangan"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2471",
+      "name": "FDM2 Supervisor"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2825",
+      "name": "R. Aloyan"
+    },
+    {
+      "site": "Cebu",
+      "department": "ARCM",
+      "localNumber": "2503",
+      "name": "R. Albiso"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2472",
+      "name": "FDM2 S. Noquilla"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2828",
+      "name": "A. Dimco"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - INBOUND RECEIVING",
+      "localNumber": "2769",
+      "name": "Inbound - Stamping"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2736",
+      "name": "Re. Arriesgado"
+    },
+    {
+      "site": "Cebu",
+      "department": "ARCM",
+      "localNumber": "2508",
+      "name": "J. Lumasag"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2473",
+      "name": "FDM2 Control Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2829",
+      "name": "F. Ybañez"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - INBOUND RECEIVING",
+      "localNumber": "2770",
+      "name": "R. Amistad"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2558",
+      "name": "L. Pepito"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2737",
+      "name": "G. Villegas"
+    },
+    {
+      "site": "Cebu",
+      "department": "ARCM",
+      "localNumber": "2507",
+      "name": "R. Cueva"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2474",
+      "name": "FDM2 MCC Room"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2830",
+      "name": "Endac"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - INBOUND RECEIVING",
+      "localNumber": "2771",
+      "name": "R. Maca"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2796",
+      "name": "C. Adlit Jr."
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2738",
+      "name": "A. Labata"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2475",
+      "name": "FDM2 TH02"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2826",
+      "name": "Sales Assistant"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - INBOUND RECEIVING",
+      "localNumber": "2773",
+      "name": "N. Dinoy"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2797",
+      "name": "N. Andales"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2739",
+      "name": "RND Flour"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2476",
+      "name": "FDM2 Bagging"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2305",
+      "name": "J. Solatorio"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - INBOUND RECEIVING",
+      "localNumber": "2330",
+      "name": "J. Casinto"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2798",
+      "name": "J. Lapatis"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2741",
+      "name": "A. Reusora"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2477",
+      "name": "FDM2 3rd Floor"
+    },
+    {
+      "site": "Cebu",
+      "department": "FLOUR SALES",
+      "localNumber": "2824",
+      "name": "R. Valencia"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2550",
+      "name": "B. Cosep"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2742",
+      "name": "Ma. Pino"
+    },
+    {
+      "site": "Cebu",
+      "department": "AUDIT-FINANCE",
+      "localNumber": "2540",
+      "name": "R. Dy"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL PLANT 2",
+      "localNumber": "2478",
+      "name": "FDM2 TH01"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - MGTI ISC",
+      "localNumber": "2760",
+      "name": "VACANT"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2552",
+      "name": "J. Tomaodos"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2743",
+      "name": "C. Cañete"
+    },
+    {
+      "site": "Cebu",
+      "department": "AUDIT-FINANCE",
+      "localNumber": "2541",
+      "name": "N. Mercader"
+    },
+    {
+      "site": "Cebu",
+      "department": "HATCHERY",
+      "localNumber": "2762",
+      "name": "L. Basilgo"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - MGTI ISC",
+      "localNumber": "2761",
+      "name": "R. Taparra"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2553",
+      "name": "M. Arequez"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2744",
+      "name": "M. Aming"
+    },
+    {
+      "site": "Cebu",
+      "department": "AUDIT-FINANCE",
+      "localNumber": "2534",
+      "name": "C. Almerez"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL MANAGER'S OFFICE",
+      "localNumber": "2417",
+      "name": "A. Cantero (VACANT)"
+    },
+    {
+      "site": "Cebu",
+      "department": "HATCHERY",
+      "localNumber": "2763",
+      "name": "R. Estenzo"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - MGTI ISC",
+      "localNumber": "2766",
+      "name": "O. Malingin"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2554",
+      "name": "F. Alvin Ga"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2745",
+      "name": "R&D Flour Lab"
+    },
+    {
+      "site": "Cebu",
+      "department": "AUDIT-FINANCE",
+      "localNumber": "2533",
+      "name": "(Vacant)"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL MANAGER'S OFFICE",
+      "localNumber": "2460",
+      "name": "M. Duenas"
+    },
+    {
+      "site": "Cebu",
+      "department": "HATCHERY",
+      "localNumber": "2764",
+      "name": "Hatchery Tech Crew"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - MGTI ISC",
+      "localNumber": "2767",
+      "name": "VACANT"
+    },
+    {
+      "site": "Cebu",
+      "department": "PROCUREMENT",
+      "localNumber": "2557",
+      "name": "E. Rojas"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2746",
+      "name": "M. Mejias"
+    },
+    {
+      "site": "Cebu",
+      "department": "AUDIT-FINANCE",
+      "localNumber": "2702",
+      "name": "(Vacant)"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL MANAGER'S OFFICE",
+      "localNumber": "2461",
+      "name": "FDM Assistant"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - MGTI ISC",
+      "localNumber": "2768",
+      "name": "S. Cachuela"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2747",
+      "name": "A. Arranguez"
+    },
+    {
+      "site": "Cebu",
+      "department": "FEEDMILL MANAGER'S OFFICE",
+      "localNumber": "2412",
+      "name": "FDM Encoder"
+    },
+    {
+      "site": "Cebu",
+      "department": "LOGISTICS - MGTI ISC",
+      "localNumber": "2778",
+      "name": "VACANT"
+    },
+    {
+      "site": "Cebu",
+      "department": "R&D FLOUR",
+      "localNumber": "2748",
+      "name": "R&D Bakeshop"
+    }
+  ]
+}

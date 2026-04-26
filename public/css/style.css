@@ -233,6 +233,156 @@ img { display: block; max-width: 100%; }
 .sys-icon.sap     { background: #e0ecff; }
 .sys-icon.sheets  { background: #e6f4ea; }
 .sys-icon.powerbi { background: #fff3e0; }
+
+/* === DIRECTORY PAGE === */
+.directory-page {
+    background: #f5f7f6;
+    min-height: 100vh;
+}
+.directory-nav {
+    position: sticky;
+    background: rgba(255,255,255,0.94);
+    border-bottom: 1px solid var(--border);
+}
+.directory-brand {
+    text-decoration: none;
+}
+.directory-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+.directory-back i {
+    width: 18px;
+    height: 18px;
+}
+.directory-shell {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+}
+.directory-hero {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2rem 0 1.5rem;
+}
+.directory-kicker {
+    color: var(--icon-teal);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    margin-bottom: 0.4rem;
+}
+.directory-hero h1 {
+    font-family: var(--font-heading);
+    font-size: 2.35rem;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+.directory-hero p {
+    color: var(--text-secondary);
+    max-width: 680px;
+}
+.directory-count {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-weight: 700;
+    padding: 0.75rem 1rem;
+    white-space: nowrap;
+}
+.directory-toolbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.directory-search,
+.directory-toolbar select {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    min-height: 48px;
+}
+.directory-search {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 0.9rem;
+}
+.directory-search i {
+    width: 20px;
+    height: 20px;
+    color: var(--text-secondary);
+}
+.directory-search input,
+.directory-toolbar select {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    color: var(--text-primary);
+}
+.directory-toolbar select {
+    padding: 0 0.9rem;
+}
+.directory-results {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+.directory-card {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 0.85rem;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0.9rem;
+}
+.directory-local {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    border-radius: var(--radius);
+    background: var(--icon-teal-bg);
+    color: var(--icon-teal);
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+.directory-details h2 {
+    font-size: 0.98rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+    overflow-wrap: anywhere;
+}
+.directory-details p {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.35;
+}
+.directory-empty {
+    grid-column: 1 / -1;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-secondary);
+    padding: 2rem;
+    text-align: center;
+}
 .sys-icon.confluence { background: #e3ecfa; }
 .sys-icon.jira    { background: #deebff; }
 .sys-info h3 {
@@ -610,6 +760,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 1024px) {
     .cards-grid { grid-template-columns: repeat(4, 1fr); }
     .status-indicator { display: none; }
+    .directory-results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 768px) {
     .navbar-inner { padding: 0 1rem; }
@@ -641,6 +792,15 @@ img { display: block; max-width: 100%; }
         padding: 8px;
         justify-content: center;
     }
+    .directory-shell { padding: 1.25rem 1rem 3rem; }
+    .directory-hero {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 1.25rem;
+    }
+    .directory-hero h1 { font-size: 2rem; }
+    .directory-toolbar { grid-template-columns: 1fr; }
+    .directory-results { grid-template-columns: 1fr; }
 }
 @media (max-width: 480px) {
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
@@ -652,4 +812,6 @@ img { display: block; max-width: 100%; }
         width: calc(100vw - 24px);
         height: min(560px, calc(100vh - 96px));
     }
+    .directory-card { grid-template-columns: 74px minmax(0, 1fr); }
+    .directory-local { font-size: 0.95rem; }
 }

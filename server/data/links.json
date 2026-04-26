@@ -30,6 +30,16 @@
     "icon": "door-open"
   },
   {
+    "id": "card-directory",
+    "name": "Directory",
+    "description": "Local Numbers",
+    "url": "/directory.html",
+    "target": "_self",
+    "color": "teal",
+    "iconType": "lucide",
+    "icon": "phone-call"
+  },
+  {
     "id": "card-sheets",
     "name": "Google Sheets",
     "description": "Spreadsheets",

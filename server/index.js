@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 const modelId = process.env.OPENAI_MODEL || 'gpt-5.4-mini';
 const openAiApiKey = process.env.OPENAI_API_KEY;
 const openAiVectorStoreId = process.env.OPENAI_VECTOR_STORE_ID;
+const directoryFilePath = path.join(__dirname, 'data', 'directory-cebu.json');
 const memorySources = [
     {
         label: 'GenMil consciousness',
@@ -32,6 +33,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 const client = hasValidOpenAiKey ? new OpenAI({ apiKey: openAiApiKey }) : null;
 const portalMemoryDocs = loadPortalMemoryDocs();
+const telephoneDirectory = loadTelephoneDirectory();
 
 function getLatestUserMessage(messages = []) {
     for (let i = messages.length - 1; i >= 0; i -= 1) {
@@ -103,6 +105,94 @@ function normalizeTokens(text) {
     });
 }
 
+function loadTelephoneDirectory() {
+    try {
+        if (!fs.existsSync(directoryFilePath)) {
+            return { entries: [] };
+        }
+
+        return JSON.parse(fs.readFileSync(directoryFilePath, 'utf8'));
+    } catch (error) {
+        console.error('Failed to load telephone directory:', error.message);
+        return { entries: [] };
+    }
+}
+
+function getDirectoryQueryTokens(text) {
+    return (text.toLowerCase().match(/[a-z0-9*() -]{2,}/g) || [])
+        .join(' ')
+        .replace(/[()]/g, ' ')
+        .split(/[^a-z0-9*]+/)
+        .map((token) => token.trim())
+        .filter((token) => {
+            return token.length >= 2 && ![
+                'the', 'and', 'for', 'of', 'to', 'in', 'is', 'are', 'what', 'whats', 'what is',
+                'local', 'number', 'telephone', 'phone', 'extension', 'ext', 'directory', 'cebu',
+                'gmc', 'genmil'
+            ].includes(token);
+        });
+}
+
+function searchTelephoneDirectory(query, limit = 8) {
+    const entries = telephoneDirectory.entries || [];
+    const tokens = getDirectoryQueryTokens(query);
+    const exactNumber = query.match(/\*?\d{3,4}|\(\d{3}\)\s*\d{3}\s*\d{4}/)?.[0]?.replace(/\s+/g, ' ');
+
+    if (!entries.length || (!tokens.length && !exactNumber)) {
+        return [];
+    }
+
+    return entries
+        .map((entry) => {
+            const department = entry.department.toLowerCase();
+            const name = entry.name.toLowerCase();
+            const localNumber = entry.localNumber.toLowerCase();
+            const haystack = `${department} ${name} ${localNumber}`;
+            const words = haystack.split(/[^a-z0-9*]+/).filter(Boolean);
+            let score = 0;
+
+            if (exactNumber && localNumber.includes(exactNumber.toLowerCase())) {
+                score += 10;
+            }
+
+            for (const token of tokens) {
+                if (localNumber === token) score += 10;
+                if (name === token) score += 8;
+                if (department === token) score += 7;
+
+                if (token.length <= 2) {
+                    if (words.includes(token)) score += 5;
+                    continue;
+                }
+
+                if (name.includes(token)) score += 4;
+                if (department.includes(token)) score += 3;
+                if (haystack.includes(token)) score += 1;
+            }
+
+            return { ...entry, score };
+        })
+        .filter((entry) => entry.score > 0)
+        .sort((a, b) => b.score - a.score || a.department.localeCompare(b.department))
+        .slice(0, limit);
+}
+
+function formatDirectoryAnswer(matches) {
+    if (!matches.length) {
+        return '';
+    }
+
+    const lines = matches.map((entry) => {
+        return `- ${entry.name} (${entry.department}): local ${entry.localNumber}`;
+    });
+
+    return `Here are the closest Cebu directory matches:\n${lines.join('\n')}`;
+}
+
+function isDirectoryQuestion(text) {
+    return /\b(local|telephone|phone|extension|directory|contact|number)\b/i.test(text);
+}
+
 function findRelevantMemory(userMessage) {
     const queryTokens = normalizeTokens(userMessage);
     if (!queryTokens.length || !portalMemoryDocs.length) {
@@ -168,6 +258,11 @@ function buildMemoryContext(matches, userMessage) {
 
 function getPortalFallbackResponse(userMessage, memoryMatches = []) {
     const text = userMessage.toLowerCase();
+    const directoryMatches = searchTelephoneDirectory(userMessage);
+
+    if (isDirectoryQuestion(userMessage) && directoryMatches.length) {
+        return formatDirectoryAnswer(directoryMatches);
+    }
 
     if (text.includes('leave')) {
         return 'For leave requests, open HiTS HRIS or the Leave Management system, choose your leave type, select the dates, add the required reason/details, then submit it for approval.';
@@ -292,6 +387,19 @@ app.post('/api/chat', async (req, res) => {
 
 const linksFilePath = path.join(__dirname, 'data', 'links.json');
 
+app.get('/api/directory', (req, res) => {
+    const query = String(req.query.q || '').trim();
+
+    if (query) {
+        return res.json({
+            ...telephoneDirectory,
+            entries: searchTelephoneDirectory(query, 25)
+        });
+    }
+
+    return res.json(telephoneDirectory);
+});
+
 app.get('/api/links', (req, res) => {
     try {
         const rawData = fs.readFileSync(linksFilePath);
@@ -325,6 +433,7 @@ app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
     console.log(`Using OpenAI Model: ${modelId}`);
     console.log(`Loaded portal memory docs: ${portalMemoryDocs.length}`);
+    console.log(`Loaded directory entries: ${(telephoneDirectory.entries || []).length}`);
     console.log(`OpenAI File Search: ${openAiVectorStoreId ? `enabled (${openAiVectorStoreId})` : 'disabled'}`);
     if (!hasValidOpenAiKey) {
         console.warn('OpenAI API key is missing or still set to the placeholder value in server/config/.env');

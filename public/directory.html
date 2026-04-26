@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMC Telephone Directory</title>
+    <meta name="description" content="GMC Cebu local number directory.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="directory-page">
+    <nav class="navbar directory-nav">
+        <div class="navbar-inner">
+            <a href="/" class="navbar-brand directory-brand" aria-label="Back to GMC Portal">
+                <img src="logo.png" alt="General Milling Corporation" class="navbar-logo">
+            </a>
+            <a class="directory-back" href="/">
+                <i data-lucide="arrow-left"></i>
+                <span>Portal</span>
+            </a>
+        </div>
+    </nav>
+
+    <main class="directory-shell">
+        <section class="directory-hero">
+            <div>
+                <p class="directory-kicker">GMC Cebu</p>
+                <h1>Telephone Directory</h1>
+                <p>Search by name, department, area, direct line, speed dial, or local number.</p>
+            </div>
+            <div class="directory-count" id="directory-count">Loading</div>
+        </section>
+
+        <section class="directory-toolbar" aria-label="Directory search">
+            <div class="directory-search">
+                <i data-lucide="search"></i>
+                <input id="directory-search-input" type="search" placeholder="Search IT, payroll, main gate, JFFP, 2527...">
+            </div>
+            <select id="department-filter" aria-label="Filter by department">
+                <option value="">All departments</option>
+            </select>
+        </section>
+
+        <section class="directory-results" id="directory-results" aria-live="polite"></section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const resultsEl = document.getElementById('directory-results');
+            const searchInput = document.getElementById('directory-search-input');
+            const departmentFilter = document.getElementById('department-filter');
+            const countEl = document.getElementById('directory-count');
+            let entries = [];
+
+            function normalize(value) {
+                return String(value || '').toLowerCase();
+            }
+
+            function renderDepartments() {
+                const departments = [...new Set(entries.map((entry) => entry.department))]
+                    .filter(Boolean)
+                    .sort((a, b) => a.localeCompare(b));
+
+                departments.forEach((department) => {
+                    const option = document.createElement('option');
+                    option.value = department;
+                    option.textContent = department;
+                    departmentFilter.appendChild(option);
+                });
+            }
+
+            function getFilteredEntries() {
+                const query = normalize(searchInput.value).trim();
+                const department = departmentFilter.value;
+
+                return entries.filter((entry) => {
+                    const matchesDepartment = !department || entry.department === department;
+                    const haystack = normalize(`${entry.localNumber} ${entry.name} ${entry.department} ${entry.site}`);
+                    const matchesQuery = !query || haystack.includes(query);
+
+                    return matchesDepartment && matchesQuery;
+                });
+            }
+
+            function renderResults() {
+                const filtered = getFilteredEntries();
+                countEl.textContent = `${filtered.length} entries`;
+
+                if (!filtered.length) {
+                    resultsEl.innerHTML = '<div class="directory-empty">No directory matches found.</div>';
+                    return;
+                }
+
+                resultsEl.innerHTML = filtered.map((entry) => `
+                    <article class="directory-card">
+                        <div class="directory-local">${entry.localNumber}</div>
+                        <div class="directory-details">
+                            <h2>${entry.name}</h2>
+                            <p>${entry.department}</p>
+                        </div>
+                    </article>
+                `).join('');
+            }
+
+            try {
+                const response = await fetch('/api/directory');
+                const data = await response.json();
+                entries = data.entries || [];
+
+                renderDepartments();
+                renderResults();
+                lucide.createIcons();
+            } catch (error) {
+                console.error('Failed to load directory:', error);
+                resultsEl.innerHTML = '<div class="directory-empty">Directory is unavailable right now.</div>';
+                countEl.textContent = 'Unavailable';
+            }
+
+            searchInput.addEventListener('input', renderResults);
+            departmentFilter.addEventListener('change', renderResults);
+        });
+    </script>
+</body>
+</html>

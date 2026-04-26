@@ -19,7 +19,8 @@ const extraFiles = [
     path.join(serverDir, 'data', 'links.json')
 ];
 const apiKey = process.env.OPENAI_API_KEY;
-const existingVectorStoreId = process.env.OPENAI_VECTOR_STORE_ID;
+const forceFreshStore = process.argv.includes('--fresh');
+const existingVectorStoreId = forceFreshStore ? '' : process.env.OPENAI_VECTOR_STORE_ID;
 
 function listMemoryFiles(dir) {
     if (!fs.existsSync(dir)) {
