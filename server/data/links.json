@@ -2,7 +2,7 @@
   {
     "id": "card-gmail",
     "name": "Gmail",
-    "description": "Email",
+    "description": "Corporate Email",
     "url": "https://mail.google.com",
     "target": "_blank",
     "color": "red",
@@ -10,34 +10,24 @@
     "icon": "mail"
   },
   {
-    "id": "card-hits",
-    "name": "HiTS HRIS",
-    "description": "Human Resource",
-    "url": "http://gmchits.genmil.com.ph",
+    "id": "card-calendar",
+    "name": "Google Calendar",
+    "description": "Meetings & Schedules",
+    "url": "https://calendar.google.com",
     "target": "_blank",
     "color": "blue",
     "iconType": "lucide",
-    "icon": "users"
+    "icon": "calendar-days"
   },
   {
-    "id": "card-gatepass",
-    "name": "GatePass",
-    "description": "Visitor Management",
-    "url": "#",
-    "target": "_self",
-    "color": "amber",
+    "id": "card-drive",
+    "name": "Google Drive",
+    "description": "Shared Files",
+    "url": "https://drive.google.com",
+    "target": "_blank",
+    "color": "green",
     "iconType": "lucide",
-    "icon": "door-open"
-  },
-  {
-    "id": "card-directory",
-    "name": "Directory",
-    "description": "Local Numbers",
-    "url": "/directory.html",
-    "target": "_self",
-    "color": "teal",
-    "iconType": "lucide",
-    "icon": "phone-call"
+    "icon": "folder-open"
   },
   {
     "id": "card-sheets",
@@ -50,6 +40,66 @@
     "icon": "file-spreadsheet"
   },
   {
+    "id": "card-docs",
+    "name": "Google Docs",
+    "description": "Documents",
+    "url": "https://docs.google.com",
+    "target": "_blank",
+    "color": "blue",
+    "iconType": "lucide",
+    "icon": "file-text"
+  },
+  {
+    "id": "card-meet",
+    "name": "Google Meet",
+    "description": "Video Meetings",
+    "url": "https://meet.google.com",
+    "target": "_blank",
+    "color": "teal",
+    "iconType": "lucide",
+    "icon": "video"
+  },
+  {
+    "id": "card-hits",
+    "name": "HiTS HRIS",
+    "description": "Human Resource",
+    "url": "http://gmchits.genmil.com.ph",
+    "target": "_blank",
+    "color": "blue",
+    "iconType": "lucide",
+    "icon": "users"
+  },
+  {
+    "id": "card-hits-luzon",
+    "name": "HiTS HRIS Luzon",
+    "description": "HiTS System Luzon",
+    "url": "https://gmchits.genmil.com.ph:4433",
+    "target": "_blank",
+    "color": "blue",
+    "iconType": "lucide",
+    "icon": "circle-dot-dashed"
+  },
+  {
+    "id": "card-payroll",
+    "name": "Payroll",
+    "description": "Payslips & Salary",
+    "url": "#",
+    "target": "_self",
+    "color": "green",
+    "iconType": "lucide",
+    "icon": "wallet"
+  },
+  {
+    "id": "card-leave",
+    "name": "Leave Management",
+    "description": "Leave Requests",
+    "url": "#",
+    "target": "_self",
+    "color": "purple",
+    "iconType": "lucide",
+    "icon": "calendar-check"
+  },
+  {
     "id": "card-ticket",
     "name": "Support Ticket",
     "description": "IT Support",
@@ -60,13 +110,93 @@
     "icon": "headphones"
   },
   {
-    "id": "card-1776907722556",
-    "name": "HiTS HRIS Luzon",
-    "description": "HiTS System Luzon",
-    "url": "https://gmchits.genmil.com.ph:4433",
-    "target": "_blank",
+    "id": "card-helpdesk",
+    "name": "IT Helpdesk",
+    "description": "Access & Devices",
+    "url": "#",
+    "target": "_self",
+    "color": "teal",
+    "iconType": "lucide",
+    "icon": "life-buoy"
+  },
+  {
+    "id": "card-directory",
+    "name": "Directory",
+    "description": "Local Numbers",
+    "url": "/directory.html",
+    "target": "_self",
+    "color": "teal",
+    "iconType": "lucide",
+    "icon": "phone-call"
+  },
+  {
+    "id": "card-gatepass",
+    "name": "GatePass",
+    "description": "Gate Requests",
+    "url": "#",
+    "target": "_self",
+    "color": "amber",
+    "iconType": "lucide",
+    "icon": "door-open"
+  },
+  {
+    "id": "card-entrypass",
+    "name": "Entry Pass",
+    "description": "Visitor Registration",
+    "url": "#",
+    "target": "_self",
+    "color": "amber",
+    "iconType": "lucide",
+    "icon": "clipboard-check"
+  },
+  {
+    "id": "card-policies",
+    "name": "Company Policies",
+    "description": "Guidelines & Memos",
+    "url": "#",
+    "target": "_self",
+    "color": "purple",
+    "iconType": "lucide",
+    "icon": "book-open"
+  },
+  {
+    "id": "card-announcements",
+    "name": "Announcements",
+    "description": "Company Updates",
+    "url": "#announcements-section",
+    "target": "_self",
+    "color": "coral",
+    "iconType": "lucide",
+    "icon": "megaphone"
+  },
+  {
+    "id": "card-forms",
+    "name": "Forms Library",
+    "description": "Office Forms",
+    "url": "#",
+    "target": "_self",
     "color": "blue",
     "iconType": "lucide",
-    "icon": "circle-dot-dashed"
+    "icon": "files"
+  },
+  {
+    "id": "card-procurement",
+    "name": "Procurement",
+    "description": "Purchase Requests",
+    "url": "#",
+    "target": "_self",
+    "color": "amber",
+    "iconType": "lucide",
+    "icon": "shopping-cart"
+  },
+  {
+    "id": "card-powerbi",
+    "name": "Power BI",
+    "description": "Reports & Dashboards",
+    "url": "https://app.powerbi.com",
+    "target": "_blank",
+    "color": "green",
+    "iconType": "lucide",
+    "icon": "bar-chart-3"
   }
 ]
