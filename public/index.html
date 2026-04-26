@@ -161,16 +161,36 @@
                         <img src="avatar.png" alt="GeMil">
                     </div>
                     <div class="chat-text">
-                        <p>Hello. Ask about leave, payslip, IT support, gate pass, or portal links.</p>
+                        <p>Hello. Choose a quick question below or type what you need.</p>
                     </div>
                 </div>
             </div>
 
             <div class="chat-suggestions" id="chat-suggestions">
-                <button class="suggestion-chip" data-question="How do I apply for leave?">Leave</button>
-                <button class="suggestion-chip" data-question="Where can I view my payslip?">Payslip</button>
-                <button class="suggestion-chip" data-question="How to raise an IT request?">IT Support</button>
-                <button class="suggestion-chip" data-question="How do I request a gate pass?">Gate Pass</button>
+                <div class="suggestion-group">
+                    <p>Directory</p>
+                    <div class="suggestion-row">
+                        <button class="suggestion-chip" data-question="What is the local number for IT?">IT local</button>
+                        <button class="suggestion-chip" data-question="What is the local number for HR Payroll?">Payroll local</button>
+                        <button class="suggestion-chip" data-question="What is the local number for Main Gate?">Main Gate</button>
+                    </div>
+                </div>
+                <div class="suggestion-group">
+                    <p>HR</p>
+                    <div class="suggestion-row">
+                        <button class="suggestion-chip" data-question="How do I apply for leave?">Leave</button>
+                        <button class="suggestion-chip" data-question="Where can I view my payslip?">Payslip</button>
+                        <button class="suggestion-chip" data-question="How do I reset my password?">Password</button>
+                    </div>
+                </div>
+                <div class="suggestion-group">
+                    <p>Access</p>
+                    <div class="suggestion-row">
+                        <button class="suggestion-chip" data-question="How to raise an IT request?">IT Support</button>
+                        <button class="suggestion-chip" data-question="How do I request a gate pass?">Gate Pass</button>
+                        <button class="suggestion-chip" data-question="How do I register a visitor entry pass?">Entry Pass</button>
+                    </div>
+                </div>
             </div>
 
             <div class="chat-input-area">
@@ -351,10 +371,6 @@ RULES:
             async function handleSend() {
                 const text = chatInput.value.trim();
                 if (!text || chatInput.disabled) return;
-
-                if (chatSuggestions) {
-                    chatSuggestions.style.display = 'none';
-                }
 
                 addMessage(text, true);
                 chatInput.value = '';
