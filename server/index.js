@@ -195,16 +195,44 @@ function searchTelephoneDirectory(query, limit = 8) {
         .slice(0, limit);
 }
 
-function formatDirectoryAnswer(matches) {
+function formatDirectoryAnswer(matches, options = {}) {
     if (!matches.length) {
         return '';
     }
 
-    const lines = matches.map((entry) => {
-        return `- ${entry.name} (${entry.department}): local ${entry.localNumber}`;
+    const groupLimit = options.groupLimit || 3;
+    const grouped = matches.reduce((groups, entry) => {
+        const key = `${entry.department}::${entry.name}`;
+
+        if (!groups.has(key) && groups.size >= groupLimit) {
+            return groups;
+        }
+
+        if (!groups.has(key)) {
+            groups.set(key, {
+                department: entry.department,
+                name: entry.name,
+                localNumbers: []
+            });
+        }
+
+        groups.get(key).localNumbers.push(entry.localNumber);
+        return groups;
+    }, new Map());
+
+    const lines = [...grouped.values()].map((entry) => {
+        const label = entry.name && entry.name !== 'Unassigned'
+            ? `${entry.name} (${entry.department})`
+            : entry.department;
+
+        return `${label}: ${entry.localNumbers.join(', ')}`;
     });
 
-    return `Here are the closest Cebu directory matches:\n${lines.join('\n')}`;
+    const shownNumberCount = [...grouped.values()].reduce((total, entry) => total + entry.localNumbers.length, 0);
+    const moreCount = Math.max(matches.length - shownNumberCount, 0);
+    const suffix = moreCount ? `\n\n${moreCount} more match${moreCount === 1 ? '' : 'es'} found. Open Directory for the full list.` : '';
+
+    return `Local number${lines.length > 1 ? 's' : ''}:\n${lines.join('\n')}${suffix}`;
 }
 
 function isDirectoryQuestion(text) {
