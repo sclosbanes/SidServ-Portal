@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMC Portal - Welcome Genmillers</title>
+    <meta name="description" content="General Milling Corporation Internal Portal - Your central hub for all GMC systems and services.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ========== TOP NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-brand">
+                <img src="logo.png" alt="General Milling Corporation" class="navbar-logo">
+            </div>
+            <div class="navbar-center">
+                <div class="search-box" id="search-box">
+                    <div class="search-icon-left">
+                        <i data-lucide="search"></i>
+                    </div>
+                    <input type="text" placeholder="Search systems, tools, documents and more..." id="search-input">
+                    <button class="search-btn" type="button">
+                        <i data-lucide="search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <div class="status-indicator" id="status-indicator">
+                    <span class="status-dot online"></span>
+                    <span class="status-text">All Systems Operational</span>
+                </div>
+                <button class="icon-btn" id="help-btn" title="Help">
+                    <i data-lucide="help-circle"></i>
+                </button>
+                <button class="icon-btn" id="notif-btn" title="Notifications">
+                    <i data-lucide="bell"></i>
+                    <span class="notif-dot"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO BANNER ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome,<br><span class="hero-accent">Genmillers!</span></h1>
+            <div class="hero-underline"></div>
+            <p class="hero-sub">One portal. All the tools.<br>Everything you need to do your best work.</p>
+        </div>
+    </section>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main-wrapper">
+        <div class="content-grid">
+
+            <!-- LEFT: Major Systems & Tools -->
+            <div class="systems-column">
+                <div class="section-header">
+                    <div class="section-title">
+                        <i data-lucide="layout-grid"></i>
+                        <h2>Major Systems & Tools</h2>
+                    </div>
+                </div>
+                <div class="cards-grid" id="cards-grid">
+                    <!-- Cards will be dynamically loaded here from /api/links -->
+                    <div style="grid-column: 1/-1; padding: 2rem; text-align: center; color: #6b7280;">Loading systems...</div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </main>
+
+    <!-- ========== ANNOUNCEMENTS SECTION ========== -->
+    <section class="announcements-section" id="announcements-section">
+        <div class="announcements-inner">
+            <div class="announcements-header">
+                <div class="announcements-title">
+                    <i data-lucide="megaphone"></i>
+                    <h2>Announcements</h2>
+                </div>
+                <a href="#" class="view-all-link">View all</a>
+            </div>
+            <div class="announcements-grid">
+                <div class="announcement-card">
+                    <div class="announcement-icon green-bg">
+                        <i data-lucide="wrench"></i>
+                    </div>
+                    <div class="announcement-body">
+                        <h4>System Maintenance – Payroll</h4>
+                        <p>Payroll system will be under maintenance on May 18th from 8:00 PM to 10:00 PM.</p>
+                        <span class="announcement-date">May 15, 2025</span>
+                    </div>
+                </div>
+                <div class="announcement-card">
+                    <div class="announcement-icon gold-bg">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <div class="announcement-body">
+                        <h4>New Leave Policy Update</h4>
+                        <p>Please review the updated leave policy effective June 1, 2025.</p>
+                        <span class="announcement-date">May 14, 2025</span>
+                    </div>
+                </div>
+                <div class="announcement-card">
+                    <div class="announcement-icon blue-bg">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <div class="announcement-body">
+                        <h4>Q2 Town Hall Meeting</h4>
+                        <p>Join us on May 25th at 10:00 AM in the Main Auditorium.</p>
+                        <span class="announcement-date">May 13, 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer" id="site-footer">
+        <div class="footer-inner">
+            <p class="footer-copy">&copy; 2025 General Milling Corporation. All rights reserved.</p>
+            <p class="footer-tagline">One Team. One Goal. <span>One GMMC.</span></p>
+        </div>
+    </footer>
+
+    <!-- ========== FLOATING CHAT WIDGET ========== -->
+    <div class="chat-widget-container" id="chat-widget-container">
+        <dialog class="chat-dialog" id="chat-dialog" aria-labelledby="chat-title">
+            <div class="chat-panel">
+            <div class="chat-panel-header">
+                <div class="chat-panel-title">
+                    <img src="avatar.png" alt="GeMil" class="chat-panel-avatar">
+                    <div>
+                        <h3 id="chat-title">GeMil</h3>
+                        <p>Quick help for GMC systems</p>
+                    </div>
+                </div>
+                <button class="close-widget-btn" id="close-widget-btn" type="button" title="Close chat">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-bubble bot">
+                    <div class="chat-avatar">
+                        <img src="avatar.png" alt="GeMil">
+                    </div>
+                    <div class="chat-text">
+                        <p>Hello. Ask about leave, payslip, IT support, gate pass, or portal links.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-suggestions" id="chat-suggestions">
+                <button class="suggestion-chip" data-question="How do I apply for leave?">Leave</button>
+                <button class="suggestion-chip" data-question="Where can I view my payslip?">Payslip</button>
+                <button class="suggestion-chip" data-question="How to raise an IT request?">IT Support</button>
+                <button class="suggestion-chip" data-question="How do I request a gate pass?">Gate Pass</button>
+            </div>
+
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Type your message..." autocomplete="off">
+                <button class="chat-send-btn" id="chat-send-btn" type="button" title="Send">
+                    <i data-lucide="send"></i>
+                </button>
+            </div>
+            </div>
+        </dialog>
+        <button class="chat-widget-button" id="chat-widget-button" type="button" title="Open chat">
+            <img src="avatar.png" alt="GeMil">
+            <span>Chat</span>
+        </button>
+    </div>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            const BACKEND_URL = '/api/chat';
+            const SYSTEM_PROMPT = `You are the GMC Portal Assistant for General Milling Corporation (GMC). You help employees (called "Genmillers") with questions about company systems, HR policies, IT support, and general workplace queries.
+
+AVAILABLE SYSTEMS ON THE PORTAL:
+1. Gmail - Corporate email at mail.google.com (@genmil.com.ph accounts)
+2. HiTS HRIS - Human Resource Information System at gmchits.genmil.com.ph
+3. SAP S/4HANA - Enterprise Resource Planning system
+4. GatePass - Gate pass requests for taking items in/out of premises
+5. Entry Pass - Visitor and employee entry management
+6. PowerIMS - Information Management System
+7. Google Sheets - Spreadsheets and data collaboration
+8. Support Ticket - IT support ticket system (Google Forms based)
+9. Payroll - Payroll and salary management
+10. Time Tracking - Time and attendance tracking
+11. Expense Management - Expense reporting and reimbursement
+12. Power BI - Business analytics and data visualization
+13. ServiceNow - IT Service Management platform
+14. IT Helpdesk - IT support portal
+15. Confluence - Knowledge base and documentation
+16. Jira - Project management and issue tracking
+17. Company Policies - Company policies and guidelines
+18. Intranet - Internal company intranet
+19. Leave Management - Leave application and absence tracking
+20. Employee Self Service - HR self-service portal
+
+KEY INFORMATION:
+- For IT issues: Submit a Support Ticket or contact IT Helpdesk
+- For leave: Use Leave Management system, select leave type and dates
+- For payslip: Access through Payroll system > My Payslips
+- For gate pass: Use GatePass system, needs supervisor approval
+- For visitor entry: Use Entry Pass, register 24 hours in advance
+- For password reset: Employee Self Service > Security Settings
+- Company holidays: Available in Company Policies section
+
+RULES:
+- Be friendly, helpful, and concise
+- Use emojis occasionally to be approachable
+- If unsure, suggest contacting IT Helpdesk
+- Always direct users to the correct system on the portal
+- Keep responses short (2-4 sentences max)
+- You can answer general questions too, not just GMC-specific ones`;
+
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const chatSendBtn = document.getElementById('chat-send-btn');
+            const chatSuggestions = document.getElementById('chat-suggestions');
+            const searchInput = document.getElementById('search-input');
+            const chatWidgetBtn = document.getElementById('chat-widget-button');
+            const chatDialog = document.getElementById('chat-dialog');
+            const closeWidgetBtn = document.getElementById('close-widget-btn');
+            const chatWidgetContainer = document.getElementById('chat-widget-container');
+
+            let conversationHistory = [];
+
+            async function loadSystemLinks() {
+                try {
+                    const res = await fetch('/api/links');
+                    const links = await res.json();
+                    const grid = document.getElementById('cards-grid');
+                    grid.innerHTML = '';
+
+                    links.forEach((link) => {
+                        const a = document.createElement('a');
+                        a.href = link.url;
+                        a.target = link.target || '_blank';
+                        a.className = 'sys-card';
+                        a.id = link.id;
+
+                        a.innerHTML = `
+                        <div class="sys-icon ${link.color}">
+                                <i data-lucide="${link.icon || 'link'}"></i>
+                            </div>
+                            <div class="sys-info">
+                                <h3>${link.name}</h3>
+                                <p>${link.description}</p>
+                            </div>
+                        `;
+                        grid.appendChild(a);
+                    });
+
+                    lucide.createIcons();
+                } catch (err) {
+                    console.error('Failed to load links:', err);
+                }
+            }
+
+            function addMessage(text, isUser) {
+                const bubble = document.createElement('div');
+                bubble.className = `chat-bubble ${isUser ? 'user' : 'bot'}`;
+
+                if (isUser) {
+                    bubble.innerHTML = `<div class="chat-text"><p>${text}</p></div>`;
+                } else {
+                    bubble.innerHTML = `
+                        <div class="chat-avatar"><img src="avatar.png" alt="GeMil"></div>
+                        <div class="chat-text"><p>${text}</p></div>
+                    `;
+                }
+
+                chatMessages.appendChild(bubble);
+                lucide.createIcons();
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                const typing = document.createElement('div');
+                typing.className = 'chat-bubble bot typing-indicator';
+                typing.id = 'typing-indicator';
+                typing.innerHTML = `
+                    <div class="chat-avatar"><img src="avatar.png" alt="GeMil"></div>
+                    <div class="chat-text">
+                        <div class="typing-dots"><span></span><span></span><span></span></div>
+                    </div>
+                `;
+                chatMessages.appendChild(typing);
+                lucide.createIcons();
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function removeTypingIndicator() {
+                const el = document.getElementById('typing-indicator');
+                if (el) el.remove();
+            }
+
+            async function getGeminiResponse(userMessage) {
+                conversationHistory.push({ role: 'user', parts: [{ text: userMessage }] });
+
+                try {
+                    const response = await fetch(BACKEND_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            systemInstruction: SYSTEM_PROMPT,
+                            messages: conversationHistory
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    const aiText = data.text || "Sorry, I couldn't process that. Please try again.";
+
+                    conversationHistory.push({ role: 'model', parts: [{ text: aiText }] });
+                    if (conversationHistory.length > 20) {
+                        conversationHistory = conversationHistory.slice(-20);
+                    }
+
+                    return aiText;
+                } catch (error) {
+                    console.error('Gemini API Error:', error);
+                    return "⚠️ I'm having trouble connecting right now. Please try again in a moment, or contact IT Helpdesk for immediate assistance.";
+                }
+            }
+
+            async function handleSend() {
+                const text = chatInput.value.trim();
+                if (!text || chatInput.disabled) return;
+
+                if (chatSuggestions) {
+                    chatSuggestions.style.display = 'none';
+                }
+
+                addMessage(text, true);
+                chatInput.value = '';
+                chatInput.disabled = true;
+                chatSendBtn.disabled = true;
+                showTypingIndicator();
+
+                const response = await getGeminiResponse(text);
+
+                removeTypingIndicator();
+                addMessage(response, false);
+                chatInput.disabled = false;
+                chatSendBtn.disabled = false;
+                chatInput.focus();
+            }
+
+            function openWidget() {
+                chatWidgetContainer.classList.add('expanded');
+                if (!chatDialog.open) {
+                    chatDialog.show();
+                }
+                window.setTimeout(() => chatInput.focus(), 50);
+            }
+
+            function closeWidget() {
+                chatWidgetContainer.classList.remove('expanded');
+                if (chatDialog.open) {
+                    chatDialog.close();
+                }
+            }
+
+            function toggleWidget() {
+                if (!chatDialog.open) {
+                    openWidget();
+                    return;
+                }
+
+                closeWidget();
+            }
+
+            loadSystemLinks();
+
+            chatSendBtn.addEventListener('click', handleSend);
+            chatInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    handleSend();
+                }
+            });
+
+            document.querySelectorAll('.suggestion-chip').forEach((chip) => {
+                chip.addEventListener('click', () => {
+                    openWidget();
+                    chatInput.value = chip.dataset.question;
+                    handleSend();
+                });
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                document.querySelectorAll('.sys-card').forEach((card) => {
+                    const name = card.querySelector('.sys-info h3').textContent.toLowerCase();
+                    const desc = card.querySelector('.sys-info p').textContent.toLowerCase();
+                    card.style.display = !query || name.includes(query) || desc.includes(query) ? '' : 'none';
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                navbar.classList.toggle('scrolled', window.scrollY > 10);
+            });
+
+            chatWidgetBtn.addEventListener('click', toggleWidget);
+            closeWidgetBtn.addEventListener('click', closeWidget);
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && chatDialog.open) {
+                    closeWidget();
+                }
+            });
+
+            chatDialog.addEventListener('click', (e) => {
+                const rect = chatDialog.getBoundingClientRect();
+                const isBackdropClick =
+                    e.clientX < rect.left ||
+                    e.clientX > rect.right ||
+                    e.clientY < rect.top ||
+                    e.clientY > rect.bottom;
+
+                if (isBackdropClick) {
+                    closeWidget();
+                }
+            });
+
+            chatDialog.addEventListener('close', () => {
+                chatWidgetContainer.classList.remove('expanded');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+.env
+*.log
+
+# Local credentials
+server/config/.env
+server/config/service-account.json

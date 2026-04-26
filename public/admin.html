@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - GMC Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --surface: #ffffff;
+            --background: #f3f4f6;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+        }
+
+        .admin-header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: flex-end;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+        }
+
+        label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        input, select {
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button.danger {
+            background-color: var(--danger);
+        }
+
+        button.success {
+            background-color: var(--success);
+        }
+
+        button.secondary {
+            background-color: #f3f4f6;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: #fafafa;
+        }
+
+        .link-info h4 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.1rem;
+        }
+
+        .link-info p {
+            margin: 0;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .link-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .add-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+            margin-top: 1rem;
+        }
+
+        .add-form .full-width {
+            grid-column: span 2;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            background: var(--text-main);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="admin-header">
+        <h1 class="admin-title"><i data-lucide="settings"></i> Portal Admin</h1>
+        <a href="/" style="color: var(--primary); text-decoration: none; font-weight: 500;">&larr; Back to Portal</a>
+    </header>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Authentication</h2>
+            <div class="auth-section">
+                <div class="input-group">
+                    <label>Admin Password (Required to save changes)</label>
+                    <input type="password" id="admin-password" placeholder="Enter password...">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2>Manage Systems & Links</h2>
+                <button class="success" onclick="saveAllLinks()"><i data-lucide="save"></i> Save All Changes</button>
+            </div>
+
+            <div id="links-container">
+                <!-- Links will be loaded here -->
+            </div>
+
+            <h3 style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">Add New Link</h3>
+            <div class="add-form" id="add-form">
+                <div class="input-group">
+                    <label>System Name</label>
+                    <input type="text" id="new-name" placeholder="e.g. Gmail">
+                </div>
+                <div class="input-group">
+                    <label>Description</label>
+                    <input type="text" id="new-desc" placeholder="e.g. Corporate Email">
+                </div>
+                <div class="input-group full-width">
+                    <label>URL</label>
+                    <input type="url" id="new-url" placeholder="https://...">
+                </div>
+                <div class="input-group">
+                    <label>Lucide Icon Name (<a href="https://lucide.dev/icons/" target="_blank" style="color: var(--primary);">View Icons</a>)</label>
+                    <input type="text" id="new-icon" placeholder="e.g. mail, users, brief">
+                </div>
+                <div class="input-group">
+                    <label>Color Theme</label>
+                    <select id="new-color">
+                        <option value="blue">Blue</option>
+                        <option value="red">Red</option>
+                        <option value="green">Green</option>
+                        <option value="amber">Amber (Yellow)</option>
+                        <option value="purple">Purple</option>
+                        <option value="teal">Teal</option>
+                        <option value="coral">Coral (Orange)</option>
+                    </select>
+                </div>
+                <div class="input-group full-width" style="align-items: flex-start;">
+                    <button type="button" onclick="addNewLink()"><i data-lucide="plus"></i> Add Link</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="toast" id="toast">Changes saved successfully!</div>
+
+    <script>
+        lucide.createIcons();
+        let currentLinks = [];
+
+        // Load links on start
+        async function loadLinks() {
+            try {
+                const res = await fetch('/api/links');
+                currentLinks = await res.json();
+                renderLinks();
+            } catch (err) {
+                showToast('Failed to load links from server', true);
+            }
+        }
+
+        function renderLinks() {
+            const container = document.getElementById('links-container');
+            container.innerHTML = '';
+
+            currentLinks.forEach((link, index) => {
+                const div = document.createElement('div');
+                div.className = 'link-item';
+                div.innerHTML = `
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <div style="width: 40px; height: 40px; border-radius: 8px; background: #e5e7eb; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="${link.icon}"></i>
+                        </div>
+                        <div class="link-info">
+                            <h4>${link.name} <span style="font-size: 0.75rem; background: #eee; padding: 2px 6px; border-radius: 4px; font-weight: normal;">${link.color}</span></h4>
+                            <p>${link.url}</p>
+                        </div>
+                    </div>
+                    <div class="link-actions">
+                        <button class="danger" onclick="deleteLink(${index})" style="padding: 0.5rem;"><i data-lucide="trash-2"></i></button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+
+        function addNewLink() {
+            const name = document.getElementById('new-name').value;
+            const desc = document.getElementById('new-desc').value;
+            const url = document.getElementById('new-url').value;
+            const icon = document.getElementById('new-icon').value || 'link';
+            const color = document.getElementById('new-color').value;
+
+            if(!name || !url) {
+                showToast('Name and URL are required!', true);
+                return;
+            }
+
+            const newLink = {
+                id: 'card-' + Date.now(),
+                name,
+                description: desc,
+                url,
+                target: '_blank',
+                color,
+                iconType: 'lucide',
+                icon
+            };
+
+            currentLinks.push(newLink);
+            renderLinks();
+
+            // Clear form
+            document.getElementById('new-name').value = '';
+            document.getElementById('new-desc').value = '';
+            document.getElementById('new-url').value = '';
+            document.getElementById('new-icon').value = '';
+        }
+
+        function deleteLink(index) {
+            if(confirm('Remove this link?')) {
+                currentLinks.splice(index, 1);
+                renderLinks();
+            }
+        }
+
+        async function saveAllLinks() {
+            const pwd = document.getElementById('admin-password').value;
+            if(!pwd) {
+                showToast('Please enter the Admin Password first!', true);
+                return;
+            }
+
+            try {
+                const res = await fetch('/api/links', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-admin-password': pwd
+                    },
+                    body: JSON.stringify(currentLinks)
+                });
+
+                if(res.ok) {
+                    showToast('Links successfully saved!');
+                } else {
+                    const error = await res.json();
+                    showToast(error.error || 'Failed to save', true);
+                }
+            } catch (err) {
+                showToast('Network error saving links', true);
+            }
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.background = isError ? 'var(--danger)' : 'var(--success)';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Init
+        loadLinks();
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "card-gmail",
+    "name": "Gmail",
+    "description": "Email",
+    "url": "https://mail.google.com",
+    "target": "_blank",
+    "color": "red",
+    "iconType": "lucide",
+    "icon": "mail"
+  },
+  {
+    "id": "card-hits",
+    "name": "HiTS HRIS",
+    "description": "Human Resource",
+    "url": "http://gmchits.genmil.com.ph",
+    "target": "_blank",
+    "color": "blue",
+    "iconType": "lucide",
+    "icon": "users"
+  },
+  {
+    "id": "card-gatepass",
+    "name": "GatePass",
+    "description": "Visitor Management",
+    "url": "#",
+    "target": "_self",
+    "color": "amber",
+    "iconType": "lucide",
+    "icon": "door-open"
+  },
+  {
+    "id": "card-sheets",
+    "name": "Google Sheets",
+    "description": "Spreadsheets",
+    "url": "https://sheets.google.com",
+    "target": "_blank",
+    "color": "green",
+    "iconType": "lucide",
+    "icon": "file-spreadsheet"
+  },
+  {
+    "id": "card-ticket",
+    "name": "Support Ticket",
+    "description": "IT Support",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSeqv4cQ5Pev5Xg4IqDaZNhYx7aZvzYNIPPk0lQG5bkT4M15sA/viewform",
+    "target": "_blank",
+    "color": "coral",
+    "iconType": "lucide",
+    "icon": "headphones"
+  },
+  {
+    "id": "card-1776907722556",
+    "name": "HiTS HRIS Luzon",
+    "description": "HiTS System Luzon",
+    "url": "https://gmchits.genmil.com.ph:4433",
+    "target": "_blank",
+    "color": "blue",
+    "iconType": "lucide",
+    "icon": "circle-dot-dashed"
+  }
+]
