@@ -126,7 +126,9 @@
         }
 
         .link-item {
-            display: flex;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 1rem;
             align-items: center;
             justify-content: space-between;
             padding: 1rem;
@@ -134,6 +136,24 @@
             border-radius: 8px;
             margin-bottom: 1rem;
             background: #fafafa;
+        }
+
+        .link-preview {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
         }
 
         .link-info h4 {
@@ -145,6 +165,23 @@
             margin: 0;
             font-size: 0.875rem;
             color: var(--text-muted);
+            overflow-wrap: anywhere;
+        }
+
+        .link-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: 0.45rem;
+        }
+
+        .link-pill {
+            font-size: 0.75rem;
+            background: #eef2ff;
+            color: #3730a3;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
         }
 
         .link-actions {
@@ -167,6 +204,20 @@
             grid-column: span 2;
         }
 
+        .edit-form {
+            grid-column: 1 / -1;
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .link-item.editing .edit-form {
+            display: grid;
+        }
+
         .toast {
             position: fixed;
             bottom: 2rem;
@@ -184,6 +235,37 @@
         .toast.show {
             transform: translateY(0);
             opacity: 1;
+        }
+
+        @media (max-width: 720px) {
+            .admin-header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.75rem;
+                padding: 1rem;
+            }
+
+            .card {
+                padding: 1rem;
+            }
+
+            .add-form,
+            .edit-form {
+                grid-template-columns: 1fr;
+            }
+
+            .add-form .full-width,
+            .edit-form .full-width {
+                grid-column: span 1;
+            }
+
+            .link-item {
+                grid-template-columns: 1fr;
+            }
+
+            .link-actions {
+                justify-content: flex-start;
+            }
         }
     </style>
 </head>
@@ -246,6 +328,13 @@
                         <option value="coral">Coral (Orange)</option>
                     </select>
                 </div>
+                <div class="input-group">
+                    <label>Open Behavior</label>
+                    <select id="new-target">
+                        <option value="_blank">New Tab</option>
+                        <option value="_self">Same Tab</option>
+                    </select>
+                </div>
                 <div class="input-group full-width" style="align-items: flex-start;">
                     <button type="button" onclick="addNewLink()"><i data-lucide="plus"></i> Add Link</button>
                 </div>
@@ -279,17 +368,52 @@
                 const div = document.createElement('div');
                 div.className = 'link-item';
                 div.innerHTML = `
-                    <div style="display: flex; gap: 1rem; align-items: center;">
-                        <div style="width: 40px; height: 40px; border-radius: 8px; background: #e5e7eb; display: flex; align-items: center; justify-content: center;">
-                            <i data-lucide="${link.icon}"></i>
+                    <div class="link-preview">
+                        <div class="link-icon">
+                            <i data-lucide="${escapeHtml(link.icon || 'link')}"></i>
                         </div>
                         <div class="link-info">
-                            <h4>${link.name} <span style="font-size: 0.75rem; background: #eee; padding: 2px 6px; border-radius: 4px; font-weight: normal;">${link.color}</span></h4>
-                            <p>${link.url}</p>
+                            <h4>${escapeHtml(link.name)}</h4>
+                            <p>${escapeHtml(link.description || 'No description')} · ${escapeHtml(link.url)}</p>
+                            <div class="link-meta">
+                                <span class="link-pill">${escapeHtml(link.color || 'blue')}</span>
+                                <span class="link-pill">${escapeHtml(link.icon || 'link')}</span>
+                                <span class="link-pill">${escapeHtml(link.target || '_blank')}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="link-actions">
+                        <button class="secondary" onclick="toggleEdit(${index})" style="padding: 0.5rem;"><i data-lucide="pencil"></i></button>
                         <button class="danger" onclick="deleteLink(${index})" style="padding: 0.5rem;"><i data-lucide="trash-2"></i></button>
+                    </div>
+                    <div class="edit-form" id="edit-form-${index}">
+                        <div class="input-group">
+                            <label>System Name</label>
+                            <input type="text" data-field="name" value="${escapeAttr(link.name)}">
+                        </div>
+                        <div class="input-group">
+                            <label>Description</label>
+                            <input type="text" data-field="description" value="${escapeAttr(link.description || '')}">
+                        </div>
+                        <div class="input-group full-width">
+                            <label>URL</label>
+                            <input type="text" data-field="url" value="${escapeAttr(link.url)}">
+                        </div>
+                        <div class="input-group">
+                            <label>Lucide Icon</label>
+                            <input type="text" data-field="icon" value="${escapeAttr(link.icon || 'link')}">
+                        </div>
+                        <div class="input-group">
+                            <label>Color Theme</label>
+                            ${renderColorSelect(link.color || 'blue')}
+                        </div>
+                        <div class="input-group">
+                            <label>Open Behavior</label>
+                            ${renderTargetSelect(link.target || '_blank')}
+                        </div>
+                        <div class="input-group" style="align-items: flex-start; justify-content: flex-end;">
+                            <button type="button" onclick="applyEdit(${index})"><i data-lucide="check"></i> Apply</button>
+                        </div>
                     </div>
                 `;
                 container.appendChild(div);
@@ -297,12 +421,68 @@
             lucide.createIcons();
         }
 
+        function renderColorSelect(value) {
+            const colors = ['blue', 'red', 'green', 'amber', 'purple', 'teal', 'coral'];
+            return `<select data-field="color">${colors.map((color) => {
+                return `<option value="${color}" ${color === value ? 'selected' : ''}>${color}</option>`;
+            }).join('')}</select>`;
+        }
+
+        function renderTargetSelect(value) {
+            return `
+                <select data-field="target">
+                    <option value="_blank" ${value === '_blank' ? 'selected' : ''}>New Tab</option>
+                    <option value="_self" ${value === '_self' ? 'selected' : ''}>Same Tab</option>
+                </select>
+            `;
+        }
+
+        function escapeHtml(value = '') {
+            return String(value)
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#039;');
+        }
+
+        function escapeAttr(value = '') {
+            return escapeHtml(value);
+        }
+
+        function toggleEdit(index) {
+            const item = document.getElementById(`edit-form-${index}`)?.closest('.link-item');
+            if (item) item.classList.toggle('editing');
+        }
+
+        function applyEdit(index) {
+            const form = document.getElementById(`edit-form-${index}`);
+            if (!form) return;
+
+            const next = { ...currentLinks[index] };
+            form.querySelectorAll('[data-field]').forEach((field) => {
+                next[field.dataset.field] = field.value.trim();
+            });
+
+            if (!next.name || !next.url) {
+                showToast('Name and URL are required!', true);
+                return;
+            }
+
+            next.id = next.id || 'card-' + Date.now();
+            next.iconType = 'lucide';
+            currentLinks[index] = next;
+            renderLinks();
+            showToast('Link updated. Click Save All Changes to publish.');
+        }
+
         function addNewLink() {
-            const name = document.getElementById('new-name').value;
-            const desc = document.getElementById('new-desc').value;
-            const url = document.getElementById('new-url').value;
-            const icon = document.getElementById('new-icon').value || 'link';
+            const name = document.getElementById('new-name').value.trim();
+            const desc = document.getElementById('new-desc').value.trim();
+            const url = document.getElementById('new-url').value.trim();
+            const icon = document.getElementById('new-icon').value.trim() || 'link';
             const color = document.getElementById('new-color').value;
+            const target = document.getElementById('new-target').value;
 
             if(!name || !url) {
                 showToast('Name and URL are required!', true);
@@ -314,7 +494,7 @@
                 name,
                 description: desc,
                 url,
-                target: '_blank',
+                target,
                 color,
                 iconType: 'lucide',
                 icon
