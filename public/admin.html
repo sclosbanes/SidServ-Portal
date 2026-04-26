@@ -4,437 +4,424 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - GMC Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --primary: #1a56db;
             --surface: #ffffff;
-            --background: #f3f4f6;
+            --background: #f4f6f8;
             --text-main: #111827;
             --text-muted: #6b7280;
             --border: #e5e7eb;
             --danger: #ef4444;
-            --success: #10b981;
+            --success: #059669;
         }
 
+        * { box-sizing: border-box; }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--background);
+            margin: 0;
+            background: var(--background);
             color: var(--text-main);
-            margin: 0;
-            padding: 0;
+            font-family: Inter, sans-serif;
         }
-
         .admin-header {
-            background-color: var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(255,255,255,0.96);
             border-bottom: 1px solid var(--border);
-            padding: 1rem 2rem;
+        }
+        .admin-header-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 1rem;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            align-items: center;
+            gap: 1rem;
         }
-
         .admin-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
+            margin: 0;
+            font-family: Outfit, sans-serif;
+            font-size: 1.35rem;
         }
-
+        .portal-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
         .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 1.25rem;
         }
-
         .card {
             background: var(--surface);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            margin-bottom: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 2px rgba(15,23,42,0.04);
         }
-
-        .auth-section {
+        .card-header {
             display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 1rem;
-            margin-bottom: 2rem;
-            align-items: flex-end;
+            margin-bottom: 1rem;
         }
-
+        h2, h3 { margin: 0; font-family: Outfit, sans-serif; }
+        .muted { color: var(--text-muted); font-size: 0.88rem; }
+        .auth-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto;
+            gap: 0.75rem;
+            align-items: end;
+        }
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.55rem 0.75rem;
+            border-radius: 8px;
+            background: #fff7ed;
+            color: #9a3412;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .status.unlocked {
+            background: #ecfdf5;
+            color: #047857;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .tab-btn {
+            background: #fff;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .panel { display: none; }
+        .panel.active { display: block; }
+        .grid-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+        .full { grid-column: 1 / -1; }
         .input-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            flex: 1;
+            gap: 0.4rem;
         }
-
         label {
-            font-size: 0.875rem;
-            font-weight: 500;
             color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.82rem;
         }
-
         input, select {
-            padding: 0.75rem;
+            width: 100%;
+            padding: 0.72rem 0.75rem;
             border: 1px solid var(--border);
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
+            border-radius: 7px;
+            font: inherit;
             outline: none;
+            background: #fff;
         }
-
         input:focus, select:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+            box-shadow: 0 0 0 3px rgba(26,86,219,0.1);
         }
-
         button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 0.45rem;
+            border: 0;
+            border-radius: 7px;
+            background: var(--primary);
+            color: #fff;
+            padding: 0.72rem 1rem;
+            font-weight: 700;
+            cursor: pointer;
         }
-
-        button:hover {
-            opacity: 0.9;
-        }
-
-        button.danger {
-            background-color: var(--danger);
-        }
-
-        button.success {
-            background-color: var(--success);
-        }
-
         button.secondary {
-            background-color: #f3f4f6;
+            background: #f3f4f6;
             color: var(--text-main);
             border: 1px solid var(--border);
         }
-
-        .link-item {
+        button.danger { background: var(--danger); }
+        button.success { background: var(--success); }
+        button:disabled,
+        input:disabled,
+        select:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+        .list {
+            display: grid;
+            gap: 0.65rem;
+            margin-top: 1rem;
+        }
+        .item {
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto;
-            gap: 1rem;
+            gap: 0.75rem;
             align-items: center;
-            justify-content: space-between;
-            padding: 1rem;
             border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            background: #fafafa;
+            border-radius: 9px;
+            background: #fbfdff;
+            padding: 0.85rem;
         }
-
-        .link-preview {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            min-width: 0;
+        .item-title {
+            margin: 0 0 0.25rem;
+            font-weight: 800;
         }
-
-        .link-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: #e5e7eb;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .link-info h4 {
-            margin: 0 0 0.25rem 0;
-            font-size: 1.1rem;
-        }
-
-        .link-info p {
-            margin: 0;
-            font-size: 0.875rem;
+        .item-meta {
             color: var(--text-muted);
+            font-size: 0.84rem;
             overflow-wrap: anywhere;
         }
-
-        .link-meta {
+        .pills {
             display: flex;
             flex-wrap: wrap;
             gap: 0.35rem;
             margin-top: 0.45rem;
         }
-
-        .link-pill {
-            font-size: 0.75rem;
+        .pill {
             background: #eef2ff;
             color: #3730a3;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 500;
+            border-radius: 999px;
+            padding: 0.18rem 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
         }
-
-        .link-actions {
+        .item-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            flex-wrap: wrap;
         }
-
-        .add-form {
+        .search-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            background: #f8fafc;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px dashed #cbd5e1;
-            margin-top: 1rem;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 0.7rem;
+            margin-bottom: 1rem;
         }
-
-        .add-form .full-width {
-            grid-column: span 2;
-        }
-
-        .edit-form {
-            grid-column: 1 / -1;
-            display: none;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-            margin-top: 0.25rem;
-        }
-
-        .link-item.editing .edit-form {
-            display: grid;
-        }
-
         .toast {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
+            right: 1rem;
+            bottom: 1rem;
+            padding: 0.9rem 1rem;
+            border-radius: 9px;
             background: var(--text-main);
-            color: white;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            transform: translateY(100px);
+            color: #fff;
             opacity: 0;
-            transition: all 0.3s;
+            transform: translateY(80px);
+            transition: all 0.2s;
+            max-width: min(420px, calc(100vw - 2rem));
         }
-
         .toast.show {
-            transform: translateY(0);
             opacity: 1;
+            transform: translateY(0);
         }
-
-        @media (max-width: 720px) {
-            .admin-header {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 0.75rem;
-                padding: 1rem;
-            }
-
-            .card {
-                padding: 1rem;
-            }
-
-            .add-form,
-            .edit-form {
+        @media (max-width: 760px) {
+            .admin-header-inner,
+            .card-header,
+            .auth-grid,
+            .search-row,
+            .item {
                 grid-template-columns: 1fr;
+                align-items: stretch;
             }
-
-            .add-form .full-width,
-            .edit-form .full-width {
-                grid-column: span 1;
+            .admin-header-inner,
+            .card-header {
+                display: grid;
             }
-
-            .link-item {
-                grid-template-columns: 1fr;
-            }
-
-            .link-actions {
-                justify-content: flex-start;
-            }
+            .grid-form { grid-template-columns: 1fr; }
+            .full { grid-column: span 1; }
+            .item-actions { justify-content: flex-start; }
         }
     </style>
 </head>
 <body>
-
     <header class="admin-header">
-        <h1 class="admin-title"><i data-lucide="settings"></i> Portal Admin</h1>
-        <a href="/" style="color: var(--primary); text-decoration: none; font-weight: 500;">&larr; Back to Portal</a>
+        <div class="admin-header-inner">
+            <h1 class="admin-title"><i data-lucide="settings"></i> GMC Portal Admin</h1>
+            <a class="portal-link" href="/">Back to Portal</a>
+        </div>
     </header>
 
-    <div class="container">
-
-        <div class="card">
-            <h2>Authentication</h2>
-            <div class="auth-section">
-                <div class="input-group">
-                    <label>Admin Password (Required to save changes)</label>
-                    <input type="password" id="admin-password" placeholder="Enter password...">
+    <main class="container">
+        <section class="card">
+            <div class="card-header">
+                <div>
+                    <h2>Admin Login</h2>
+                    <p class="muted">Unlock once. After that, add/edit/delete actions publish immediately.</p>
                 </div>
+                <div class="status" id="auth-status"><i data-lucide="lock"></i> Locked</div>
             </div>
-        </div>
-
-        <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h2>Manage Systems & Links</h2>
-                <button class="success" onclick="saveAllLinks()"><i data-lucide="save"></i> Save All Changes</button>
+            <div class="auth-grid">
+                <div class="input-group">
+                    <label for="admin-password">Admin Password</label>
+                    <input type="password" id="admin-password" placeholder="Enter admin password">
+                </div>
+                <button type="button" id="unlock-btn" onclick="unlockAdmin()"><i data-lucide="unlock"></i> Unlock</button>
+                <button type="button" class="secondary" id="lock-btn" onclick="lockAdmin()"><i data-lucide="lock"></i> Lock</button>
             </div>
+        </section>
 
-            <div id="links-container">
-                <!-- Links will be loaded here -->
+        <nav class="tabs" aria-label="Admin sections">
+            <button type="button" class="tab-btn active" data-panel="links-panel" onclick="showPanel('links-panel')"><i data-lucide="layout-grid"></i> Portal Links</button>
+            <button type="button" class="tab-btn" data-panel="directory-panel" onclick="showPanel('directory-panel')"><i data-lucide="phone-call"></i> Directory</button>
+            <button type="button" class="tab-btn" data-panel="logs-panel" onclick="showPanel('logs-panel')"><i data-lucide="scroll-text"></i> Logs</button>
+        </nav>
+
+        <section class="panel active" id="links-panel">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2>Portal Links</h2>
+                        <p class="muted">Manage the cards shown on the portal home page.</p>
+                    </div>
+                    <button type="button" class="secondary" onclick="loadLinks()"><i data-lucide="refresh-cw"></i> Reload</button>
+                </div>
+
+                <form class="grid-form" onsubmit="addLink(event)">
+                    <div class="input-group">
+                        <label>Name</label>
+                        <input id="link-name" required placeholder="Directory">
+                    </div>
+                    <div class="input-group">
+                        <label>Description</label>
+                        <input id="link-description" placeholder="Local Numbers">
+                    </div>
+                    <div class="input-group full">
+                        <label>URL</label>
+                        <input id="link-url" required placeholder="/directory.html">
+                    </div>
+                    <div class="input-group">
+                        <label>Lucide Icon</label>
+                        <input id="link-icon" placeholder="phone-call">
+                    </div>
+                    <div class="input-group">
+                        <label>Color</label>
+                        <select id="link-color">
+                            <option>blue</option>
+                            <option>red</option>
+                            <option>green</option>
+                            <option>amber</option>
+                            <option>purple</option>
+                            <option selected>teal</option>
+                            <option>coral</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Open Behavior</label>
+                        <select id="link-target">
+                            <option value="_self">Same Tab</option>
+                            <option value="_blank">New Tab</option>
+                        </select>
+                    </div>
+                    <div class="input-group" style="justify-content:end;">
+                        <button class="success admin-only" type="submit"><i data-lucide="plus"></i> Add Link</button>
+                    </div>
+                </form>
+
+                <div class="list" id="links-list"></div>
             </div>
+        </section>
 
-            <h3 style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border);">Add New Link</h3>
-            <div class="add-form" id="add-form">
-                <div class="input-group">
-                    <label>System Name</label>
-                    <input type="text" id="new-name" placeholder="e.g. Gmail">
+        <section class="panel" id="directory-panel">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2>Telephone Directory</h2>
+                        <p class="muted">Add local numbers that GeMil can answer immediately.</p>
+                    </div>
+                    <button type="button" class="secondary" onclick="loadDirectory()"><i data-lucide="refresh-cw"></i> Reload</button>
                 </div>
-                <div class="input-group">
-                    <label>Description</label>
-                    <input type="text" id="new-desc" placeholder="e.g. Corporate Email">
+
+                <form class="grid-form" onsubmit="addDirectoryEntry(event)">
+                    <div class="input-group">
+                        <label>Department</label>
+                        <input id="dir-department" required placeholder="IT OPERATIONS">
+                    </div>
+                    <div class="input-group">
+                        <label>Name / Area</label>
+                        <input id="dir-name" required placeholder="IT Services - Admin">
+                    </div>
+                    <div class="input-group">
+                        <label>Local Number</label>
+                        <input id="dir-local" required placeholder="2527">
+                    </div>
+                    <div class="input-group">
+                        <label>Site</label>
+                        <input id="dir-site" value="Cebu">
+                    </div>
+                    <div class="input-group" style="justify-content:end;">
+                        <button class="success admin-only" type="submit"><i data-lucide="plus"></i> Add Directory Entry</button>
+                    </div>
+                </form>
+
+                <div class="search-row">
+                    <input id="directory-search" placeholder="Search directory: IT, payroll, main gate..." oninput="renderDirectory()">
+                    <button class="secondary" type="button" onclick="clearDirectorySearch()">Clear</button>
                 </div>
-                <div class="input-group full-width">
-                    <label>URL</label>
-                    <input type="url" id="new-url" placeholder="https://...">
-                </div>
-                <div class="input-group">
-                    <label>Lucide Icon Name (<a href="https://lucide.dev/icons/" target="_blank" style="color: var(--primary);">View Icons</a>)</label>
-                    <input type="text" id="new-icon" placeholder="e.g. mail, users, brief">
-                </div>
-                <div class="input-group">
-                    <label>Color Theme</label>
-                    <select id="new-color">
-                        <option value="blue">Blue</option>
-                        <option value="red">Red</option>
-                        <option value="green">Green</option>
-                        <option value="amber">Amber (Yellow)</option>
-                        <option value="purple">Purple</option>
-                        <option value="teal">Teal</option>
-                        <option value="coral">Coral (Orange)</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label>Open Behavior</label>
-                    <select id="new-target">
-                        <option value="_blank">New Tab</option>
-                        <option value="_self">Same Tab</option>
-                    </select>
-                </div>
-                <div class="input-group full-width" style="align-items: flex-start;">
-                    <button type="button" onclick="addNewLink()"><i data-lucide="plus"></i> Add Link</button>
-                </div>
+                <div class="list" id="directory-list"></div>
             </div>
-        </div>
+        </section>
 
-    </div>
+        <section class="panel" id="logs-panel">
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <h2>Admin Logs</h2>
+                        <p class="muted">Search login, portal link, and directory changes.</p>
+                    </div>
+                    <button type="button" class="secondary admin-only" onclick="loadLogs()"><i data-lucide="refresh-cw"></i> Refresh Logs</button>
+                </div>
+                <div class="search-row">
+                    <input id="log-search" placeholder="Search logs..." oninput="loadLogs()">
+                    <button class="secondary" type="button" onclick="clearLogSearch()">Clear</button>
+                </div>
+                <div class="list" id="logs-list"></div>
+            </div>
+        </section>
+    </main>
 
-    <div class="toast" id="toast">Changes saved successfully!</div>
+    <div class="toast" id="toast"></div>
 
     <script>
         lucide.createIcons();
-        let currentLinks = [];
 
-        // Load links on start
-        async function loadLinks() {
-            try {
-                const res = await fetch('/api/links');
-                currentLinks = await res.json();
-                renderLinks();
-            } catch (err) {
-                showToast('Failed to load links from server', true);
-            }
+        const passwordStorageKey = 'gmcPortalAdminPassword';
+        let isUnlocked = false;
+        let links = [];
+        let directoryEntries = [];
+        let logsTimer = null;
+
+        function getPassword() {
+            return sessionStorage.getItem(passwordStorageKey) || '';
         }
 
-        function renderLinks() {
-            const container = document.getElementById('links-container');
-            container.innerHTML = '';
-
-            currentLinks.forEach((link, index) => {
-                const div = document.createElement('div');
-                div.className = 'link-item';
-                div.innerHTML = `
-                    <div class="link-preview">
-                        <div class="link-icon">
-                            <i data-lucide="${escapeHtml(link.icon || 'link')}"></i>
-                        </div>
-                        <div class="link-info">
-                            <h4>${escapeHtml(link.name)}</h4>
-                            <p>${escapeHtml(link.description || 'No description')} · ${escapeHtml(link.url)}</p>
-                            <div class="link-meta">
-                                <span class="link-pill">${escapeHtml(link.color || 'blue')}</span>
-                                <span class="link-pill">${escapeHtml(link.icon || 'link')}</span>
-                                <span class="link-pill">${escapeHtml(link.target || '_blank')}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="link-actions">
-                        <button class="secondary" onclick="toggleEdit(${index})" style="padding: 0.5rem;"><i data-lucide="pencil"></i></button>
-                        <button class="danger" onclick="deleteLink(${index})" style="padding: 0.5rem;"><i data-lucide="trash-2"></i></button>
-                    </div>
-                    <div class="edit-form" id="edit-form-${index}">
-                        <div class="input-group">
-                            <label>System Name</label>
-                            <input type="text" data-field="name" value="${escapeAttr(link.name)}">
-                        </div>
-                        <div class="input-group">
-                            <label>Description</label>
-                            <input type="text" data-field="description" value="${escapeAttr(link.description || '')}">
-                        </div>
-                        <div class="input-group full-width">
-                            <label>URL</label>
-                            <input type="text" data-field="url" value="${escapeAttr(link.url)}">
-                        </div>
-                        <div class="input-group">
-                            <label>Lucide Icon</label>
-                            <input type="text" data-field="icon" value="${escapeAttr(link.icon || 'link')}">
-                        </div>
-                        <div class="input-group">
-                            <label>Color Theme</label>
-                            ${renderColorSelect(link.color || 'blue')}
-                        </div>
-                        <div class="input-group">
-                            <label>Open Behavior</label>
-                            ${renderTargetSelect(link.target || '_blank')}
-                        </div>
-                        <div class="input-group" style="align-items: flex-start; justify-content: flex-end;">
-                            <button type="button" onclick="applyEdit(${index})"><i data-lucide="check"></i> Apply</button>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(div);
-            });
-            lucide.createIcons();
+        function setPassword(value) {
+            sessionStorage.setItem(passwordStorageKey, value);
         }
 
-        function renderColorSelect(value) {
-            const colors = ['blue', 'red', 'green', 'amber', 'purple', 'teal', 'coral'];
-            return `<select data-field="color">${colors.map((color) => {
-                return `<option value="${color}" ${color === value ? 'selected' : ''}>${color}</option>`;
-            }).join('')}</select>`;
-        }
-
-        function renderTargetSelect(value) {
-            return `
-                <select data-field="target">
-                    <option value="_blank" ${value === '_blank' ? 'selected' : ''}>New Tab</option>
-                    <option value="_self" ${value === '_self' ? 'selected' : ''}>Same Tab</option>
-                </select>
-            `;
+        function authHeaders() {
+            return { 'x-admin-password': getPassword() };
         }
 
         function escapeHtml(value = '') {
@@ -446,115 +433,294 @@
                 .replaceAll("'", '&#039;');
         }
 
-        function escapeAttr(value = '') {
-            return escapeHtml(value);
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.background = isError ? 'var(--danger)' : 'var(--success)';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2600);
         }
 
-        function toggleEdit(index) {
-            const item = document.getElementById(`edit-form-${index}`)?.closest('.link-item');
-            if (item) item.classList.toggle('editing');
-        }
-
-        function applyEdit(index) {
-            const form = document.getElementById(`edit-form-${index}`);
-            if (!form) return;
-
-            const next = { ...currentLinks[index] };
-            form.querySelectorAll('[data-field]').forEach((field) => {
-                next[field.dataset.field] = field.value.trim();
+        function setUnlocked(value) {
+            isUnlocked = value;
+            const status = document.getElementById('auth-status');
+            status.classList.toggle('unlocked', value);
+            status.innerHTML = value ? '<i data-lucide="shield-check"></i> Unlocked' : '<i data-lucide="lock"></i> Locked';
+            document.getElementById('unlock-btn').disabled = value;
+            document.getElementById('lock-btn').disabled = !value;
+            document.querySelectorAll('.admin-only').forEach((el) => {
+                el.disabled = !value;
             });
-
-            if (!next.name || !next.url) {
-                showToast('Name and URL are required!', true);
-                return;
-            }
-
-            next.id = next.id || 'card-' + Date.now();
-            next.iconType = 'lucide';
-            currentLinks[index] = next;
-            renderLinks();
-            showToast('Link updated. Click Save All Changes to publish.');
+            lucide.createIcons();
         }
 
-        function addNewLink() {
-            const name = document.getElementById('new-name').value.trim();
-            const desc = document.getElementById('new-desc').value.trim();
-            const url = document.getElementById('new-url').value.trim();
-            const icon = document.getElementById('new-icon').value.trim() || 'link';
-            const color = document.getElementById('new-color').value;
-            const target = document.getElementById('new-target').value;
-
-            if(!name || !url) {
-                showToast('Name and URL are required!', true);
-                return;
-            }
-
-            const newLink = {
-                id: 'card-' + Date.now(),
-                name,
-                description: desc,
-                url,
-                target,
-                color,
-                iconType: 'lucide',
-                icon
-            };
-
-            currentLinks.push(newLink);
-            renderLinks();
-
-            // Clear form
-            document.getElementById('new-name').value = '';
-            document.getElementById('new-desc').value = '';
-            document.getElementById('new-url').value = '';
-            document.getElementById('new-icon').value = '';
-        }
-
-        function deleteLink(index) {
-            if(confirm('Remove this link?')) {
-                currentLinks.splice(index, 1);
-                renderLinks();
-            }
-        }
-
-        async function saveAllLinks() {
-            const pwd = document.getElementById('admin-password').value;
-            if(!pwd) {
-                showToast('Please enter the Admin Password first!', true);
+        async function unlockAdmin() {
+            const password = document.getElementById('admin-password').value.trim();
+            if (!password) {
+                showToast('Enter the admin password first.', true);
                 return;
             }
 
             try {
-                const res = await fetch('/api/links', {
+                const response = await fetch('/api/admin/verify', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-admin-password': pwd
-                    },
-                    body: JSON.stringify(currentLinks)
+                    headers: { 'x-admin-password': password }
                 });
 
-                if(res.ok) {
-                    showToast('Links successfully saved!');
-                } else {
-                    const error = await res.json();
-                    showToast(error.error || 'Failed to save', true);
+                if (!response.ok) {
+                    const error = await response.json().catch(() => ({}));
+                    showToast(error.error || 'Invalid admin password.', true);
+                    return;
                 }
-            } catch (err) {
-                showToast('Network error saving links', true);
+
+                setPassword(password);
+                setUnlocked(true);
+                loadLogs();
+                showToast('Admin unlocked.');
+            } catch (error) {
+                showToast('Network error during login.', true);
             }
         }
 
-        function showToast(msg, isError = false) {
-            const toast = document.getElementById('toast');
-            toast.textContent = msg;
-            toast.style.background = isError ? 'var(--danger)' : 'var(--success)';
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+        function lockAdmin() {
+            sessionStorage.removeItem(passwordStorageKey);
+            document.getElementById('admin-password').value = '';
+            setUnlocked(false);
+            document.getElementById('logs-list').innerHTML = '<div class="muted">Unlock admin to view logs.</div>';
+            showToast('Admin locked.');
         }
 
-        // Init
-        loadLinks();
+        function requireUnlocked() {
+            if (isUnlocked) return true;
+            showToast('Unlock admin first.', true);
+            return false;
+        }
+
+        function showPanel(id) {
+            document.querySelectorAll('.panel').forEach((panel) => panel.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach((button) => button.classList.toggle('active', button.dataset.panel === id));
+            document.getElementById(id).classList.add('active');
+            if (id === 'logs-panel' && isUnlocked) loadLogs();
+        }
+
+        async function loadLinks() {
+            try {
+                const response = await fetch('/api/links');
+                links = await response.json();
+                renderLinks();
+            } catch (error) {
+                showToast('Failed to load portal links.', true);
+            }
+        }
+
+        function renderLinks() {
+            const list = document.getElementById('links-list');
+            list.innerHTML = links.map((link, index) => `
+                <article class="item">
+                    <div>
+                        <p class="item-title">${escapeHtml(link.name)}</p>
+                        <div class="item-meta">${escapeHtml(link.description || '')} · ${escapeHtml(link.url)}</div>
+                        <div class="pills">
+                            <span class="pill">${escapeHtml(link.color || 'blue')}</span>
+                            <span class="pill">${escapeHtml(link.icon || 'link')}</span>
+                            <span class="pill">${escapeHtml(link.target || '_blank')}</span>
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="danger admin-only" type="button" onclick="deleteLink(${index})"><i data-lucide="trash-2"></i> Delete</button>
+                    </div>
+                </article>
+            `).join('') || '<div class="muted">No portal links found.</div>';
+            setUnlocked(isUnlocked);
+        }
+
+        async function publishLinks(message) {
+            const response = await fetch('/api/links', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...authHeaders()
+                },
+                body: JSON.stringify(links)
+            });
+
+            if (!response.ok) {
+                const error = await response.json().catch(() => ({}));
+                throw new Error(error.error || 'Failed to publish links.');
+            }
+
+            showToast(message);
+            loadLogs();
+        }
+
+        async function addLink(event) {
+            event.preventDefault();
+            if (!requireUnlocked()) return;
+
+            links.push({
+                id: `card-${Date.now()}`,
+                name: document.getElementById('link-name').value.trim(),
+                description: document.getElementById('link-description').value.trim(),
+                url: document.getElementById('link-url').value.trim(),
+                target: document.getElementById('link-target').value,
+                color: document.getElementById('link-color').value,
+                iconType: 'lucide',
+                icon: document.getElementById('link-icon').value.trim() || 'link'
+            });
+
+            try {
+                await publishLinks('Portal link added.');
+                event.target.reset();
+                document.getElementById('link-color').value = 'teal';
+                document.getElementById('link-target').value = '_self';
+                renderLinks();
+            } catch (error) {
+                links.pop();
+                showToast(error.message, true);
+            }
+        }
+
+        async function deleteLink(index) {
+            if (!requireUnlocked()) return;
+            if (!confirm(`Delete ${links[index].name}?`)) return;
+
+            const previous = [...links];
+            links.splice(index, 1);
+            renderLinks();
+
+            try {
+                await publishLinks('Portal link deleted.');
+            } catch (error) {
+                links = previous;
+                renderLinks();
+                showToast(error.message, true);
+            }
+        }
+
+        async function loadDirectory() {
+            try {
+                const response = await fetch('/api/directory');
+                const data = await response.json();
+                directoryEntries = data.entries || [];
+                renderDirectory();
+            } catch (error) {
+                showToast('Failed to load directory.', true);
+            }
+        }
+
+        function renderDirectory() {
+            const query = document.getElementById('directory-search').value.trim().toLowerCase();
+            const list = document.getElementById('directory-list');
+            const filtered = directoryEntries.filter((entry) => {
+                const haystack = `${entry.department} ${entry.name} ${entry.localNumber} ${entry.site}`.toLowerCase();
+                return !query || haystack.includes(query);
+            }).slice(0, 80);
+
+            list.innerHTML = filtered.map((entry) => `
+                <article class="item">
+                    <div>
+                        <p class="item-title">${escapeHtml(entry.localNumber)} · ${escapeHtml(entry.name)}</p>
+                        <div class="item-meta">${escapeHtml(entry.department)} · ${escapeHtml(entry.site || 'Cebu')}</div>
+                    </div>
+                </article>
+            `).join('') || '<div class="muted">No directory matches found.</div>';
+        }
+
+        async function addDirectoryEntry(event) {
+            event.preventDefault();
+            if (!requireUnlocked()) return;
+
+            const entry = {
+                department: document.getElementById('dir-department').value.trim(),
+                name: document.getElementById('dir-name').value.trim(),
+                localNumber: document.getElementById('dir-local').value.trim(),
+                site: document.getElementById('dir-site').value.trim() || 'Cebu'
+            };
+
+            try {
+                const response = await fetch('/api/directory', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...authHeaders()
+                    },
+                    body: JSON.stringify(entry)
+                });
+
+                if (!response.ok) {
+                    const error = await response.json().catch(() => ({}));
+                    throw new Error(error.error || 'Failed to add directory entry.');
+                }
+
+                event.target.reset();
+                document.getElementById('dir-site').value = 'Cebu';
+                await loadDirectory();
+                loadLogs();
+                showToast('Directory entry added.');
+            } catch (error) {
+                showToast(error.message, true);
+            }
+        }
+
+        function clearDirectorySearch() {
+            document.getElementById('directory-search').value = '';
+            renderDirectory();
+        }
+
+        async function loadLogs() {
+            if (!isUnlocked) return;
+            window.clearTimeout(logsTimer);
+            logsTimer = window.setTimeout(async () => {
+                try {
+                    const query = document.getElementById('log-search').value.trim();
+                    const response = await fetch(`/api/admin/logs?q=${encodeURIComponent(query)}`, {
+                        headers: authHeaders()
+                    });
+
+                    if (!response.ok) {
+                        const error = await response.json().catch(() => ({}));
+                        throw new Error(error.error || 'Failed to load logs.');
+                    }
+
+                    const data = await response.json();
+                    renderLogs(data.logs || []);
+                } catch (error) {
+                    showToast(error.message, true);
+                }
+            }, 180);
+        }
+
+        function renderLogs(logs) {
+            const list = document.getElementById('logs-list');
+            list.innerHTML = logs.map((entry) => `
+                <article class="item">
+                    <div>
+                        <p class="item-title">${escapeHtml(entry.action)}</p>
+                        <div class="item-meta">${escapeHtml(new Date(entry.timestamp).toLocaleString())}</div>
+                        <div class="item-meta">${escapeHtml(JSON.stringify(entry.details || {}))}</div>
+                    </div>
+                </article>
+            `).join('') || '<div class="muted">No logs found.</div>';
+        }
+
+        function clearLogSearch() {
+            document.getElementById('log-search').value = '';
+            loadLogs();
+        }
+
+        async function init() {
+            const storedPassword = getPassword();
+            if (storedPassword) {
+                document.getElementById('admin-password').value = storedPassword;
+                await unlockAdmin();
+            } else {
+                setUnlocked(false);
+            }
+            loadLinks();
+            loadDirectory();
+        }
+
+        init();
     </script>
 </body>
 </html>

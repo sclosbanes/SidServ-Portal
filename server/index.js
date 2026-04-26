@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 const client = hasValidOpenAiKey ? new OpenAI({ apiKey: openAiApiKey }) : null;
 const portalMemoryDocs = loadPortalMemoryDocs();
-const telephoneDirectory = loadTelephoneDirectory();
+let telephoneDirectory = loadTelephoneDirectory();
 
 function getLatestUserMessage(messages = []) {
     for (let i = messages.length - 1; i >= 0; i -= 1) {
@@ -453,6 +453,80 @@ app.post('/api/chat', async (req, res) => {
 });
 
 const linksFilePath = path.join(__dirname, 'data', 'links.json');
+const adminLogFilePath = path.join(__dirname, 'data', 'admin-logs.jsonl');
+
+function isValidAdminPassword(adminPassword) {
+    return Boolean(process.env.ADMIN_PASSWORD) && adminPassword === process.env.ADMIN_PASSWORD;
+}
+
+function requireAdmin(req, res) {
+    const adminPassword = req.headers['x-admin-password'];
+
+    if (!process.env.ADMIN_PASSWORD) {
+        res.status(503).json({ error: 'ADMIN_PASSWORD is not configured on the server.' });
+        return false;
+    }
+
+    if (!isValidAdminPassword(adminPassword)) {
+        res.status(401).json({ error: 'Unauthorized: Invalid Admin Password' });
+        return false;
+    }
+
+    return true;
+}
+
+function appendAdminLog(action, details = {}, req = null) {
+    const entry = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        timestamp: new Date().toISOString(),
+        action,
+        details,
+        ip: req?.ip || req?.socket?.remoteAddress || ''
+    };
+
+    try {
+        fs.appendFileSync(adminLogFilePath, `${JSON.stringify(entry)}\n`, 'utf8');
+    } catch (error) {
+        console.error('Failed to write admin log:', error.message);
+    }
+
+    return entry;
+}
+
+function readAdminLogs(query = '') {
+    try {
+        if (!fs.existsSync(adminLogFilePath)) {
+            return [];
+        }
+
+        const needle = query.toLowerCase();
+        return fs
+            .readFileSync(adminLogFilePath, 'utf8')
+            .split('\n')
+            .filter(Boolean)
+            .map((line) => JSON.parse(line))
+            .filter((entry) => !needle || JSON.stringify(entry).toLowerCase().includes(needle))
+            .slice(-200)
+            .reverse();
+    } catch (error) {
+        console.error('Failed to read admin logs:', error.message);
+        return [];
+    }
+}
+
+function saveTelephoneDirectory(directory) {
+    fs.writeFileSync(directoryFilePath, `${JSON.stringify(directory, null, 2)}\n`, 'utf8');
+    telephoneDirectory = directory;
+}
+
+function normalizeDirectoryEntry(entry) {
+    return {
+        site: String(entry.site || 'Cebu').trim() || 'Cebu',
+        department: String(entry.department || '').trim(),
+        localNumber: String(entry.localNumber || '').trim(),
+        name: String(entry.name || '').trim()
+    };
+}
 
 app.get('/api/directory', (req, res) => {
     const query = String(req.query.q || '').trim();
@@ -476,11 +550,29 @@ app.get('/api/links', (req, res) => {
     }
 });
 
-app.post('/api/links', (req, res) => {
+app.post('/api/admin/verify', (req, res) => {
     const adminPassword = req.headers['x-admin-password'];
 
-    if (adminPassword !== process.env.ADMIN_PASSWORD) {
-        return res.status(401).json({ error: 'Unauthorized: Invalid Admin Password' });
+    if (!requireAdmin(req, res)) {
+        return;
+    }
+
+    appendAdminLog('admin.login', { status: 'success' }, req);
+    return res.json({ success: true });
+});
+
+app.get('/api/admin/logs', (req, res) => {
+    if (!requireAdmin(req, res)) {
+        return;
+    }
+
+    const query = String(req.query.q || '').trim();
+    return res.json({ logs: readAdminLogs(query) });
+});
+
+app.post('/api/links', (req, res) => {
+    if (!requireAdmin(req, res)) {
+        return;
     }
 
     try {
@@ -490,9 +582,39 @@ app.post('/api/links', (req, res) => {
         }
 
         fs.writeFileSync(linksFilePath, JSON.stringify(newLinks, null, 2));
+        appendAdminLog('links.publish', { count: newLinks.length }, req);
         res.json({ success: true, message: 'Links updated successfully!' });
     } catch (error) {
         res.status(500).json({ error: 'Failed to save links data' });
+    }
+});
+
+app.post('/api/directory', (req, res) => {
+    if (!requireAdmin(req, res)) {
+        return;
+    }
+
+    try {
+        const entry = normalizeDirectoryEntry(req.body || {});
+
+        if (!entry.department || !entry.localNumber || !entry.name) {
+            return res.status(400).json({ error: 'Department, local number, and name are required.' });
+        }
+
+        const nextDirectory = {
+            ...telephoneDirectory,
+            generatedAt: new Date().toISOString(),
+            entries: [
+                ...(telephoneDirectory.entries || []),
+                entry
+            ]
+        };
+
+        saveTelephoneDirectory(nextDirectory);
+        appendAdminLog('directory.add', entry, req);
+        return res.json({ success: true, entry, total: nextDirectory.entries.length });
+    } catch (error) {
+        return res.status(500).json({ error: 'Failed to save directory entry.' });
     }
 });
 
