@@ -8,9 +8,19 @@ require('dotenv').config({ path: './config/.env' });
 
 const app = express();
 const port = process.env.PORT || 3000;
-const modelId = process.env.OPENAI_MODEL || 'gpt-5-mini';
+const modelId = process.env.OPENAI_MODEL || 'gpt-5.4-mini';
 const openAiApiKey = process.env.OPENAI_API_KEY;
-const memoryDir = path.join(__dirname, 'data', 'genmil_memory');
+const openAiVectorStoreId = process.env.OPENAI_VECTOR_STORE_ID;
+const memorySources = [
+    {
+        label: 'GenMil consciousness',
+        dir: path.join(__dirname, 'data', 'genmil_consciousness')
+    },
+    {
+        label: 'GMC website memory',
+        dir: path.join(__dirname, 'data', 'genmil_memory')
+    }
+];
 const hasValidOpenAiKey = Boolean(
     openAiApiKey &&
     openAiApiKey !== 'your_api_key_here'
@@ -39,24 +49,43 @@ function getLatestUserMessage(messages = []) {
     return '';
 }
 
+function listMarkdownFiles(dir) {
+    if (!fs.existsSync(dir)) {
+        return [];
+    }
+
+    return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+        const entryPath = path.join(dir, entry.name);
+
+        if (entry.isDirectory()) {
+            return listMarkdownFiles(entryPath);
+        }
+
+        if (entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'README.md') {
+            return [entryPath];
+        }
+
+        return [];
+    });
+}
+
 function loadPortalMemoryDocs() {
     try {
-        const filenames = fs
-            .readdirSync(memoryDir)
-            .filter((filename) => filename.endsWith('.md') && filename !== 'README.md');
+        return memorySources.flatMap((source) => {
+            return listMarkdownFiles(source.dir).map((filepath) => {
+                const filename = path.relative(__dirname, filepath);
+                const content = fs.readFileSync(filepath, 'utf8');
+                const titleMatch = content.match(/^#\s+(.+)$/m);
+                const urlMatch = content.match(/^- URL:\s+(.+)$/m);
 
-        return filenames.map((filename) => {
-            const filepath = path.join(memoryDir, filename);
-            const content = fs.readFileSync(filepath, 'utf8');
-            const titleMatch = content.match(/^#\s+(.+)$/m);
-            const urlMatch = content.match(/^- URL:\s+(.+)$/m);
-
-            return {
-                filename,
-                title: titleMatch ? titleMatch[1].trim() : filename,
-                url: urlMatch ? urlMatch[1].trim() : '',
-                content
-            };
+                return {
+                    filename,
+                    source: source.label,
+                    title: titleMatch ? titleMatch[1].trim() : path.basename(filepath),
+                    url: urlMatch ? urlMatch[1].trim() : '',
+                    content
+                };
+            });
         });
     } catch (error) {
         console.error('Failed to load portal memory docs:', error.message);
@@ -132,7 +161,7 @@ function buildMemoryContext(matches, userMessage) {
     return matches
         .map((match) => {
             const snippet = extractRelevantSnippet(match.content, queryTokens);
-            return `Title: ${match.title}\nURL: ${match.url}\nSnippet: ${snippet}`;
+            return `Source: ${match.source}\nTitle: ${match.title}\nURL: ${match.url}\nSnippet: ${snippet}`;
         })
         .join('\n\n');
 }
@@ -140,18 +169,12 @@ function buildMemoryContext(matches, userMessage) {
 function getPortalFallbackResponse(userMessage, memoryMatches = []) {
     const text = userMessage.toLowerCase();
 
-    if (memoryMatches.length) {
-        const bestMatch = memoryMatches[0];
-        const snippet = extractRelevantSnippet(bestMatch.content, normalizeTokens(userMessage));
-        return `${snippet}\n\nSource: ${bestMatch.title}${bestMatch.url ? ` - ${bestMatch.url}` : ''}`;
-    }
-
     if (text.includes('leave')) {
-        return 'Open the Leave Management system, choose your leave type, select the dates, then submit it for approval.';
+        return 'For leave requests, open HiTS HRIS or the Leave Management system, choose your leave type, select the dates, add the required reason/details, then submit it for approval.';
     }
 
     if (text.includes('payslip') || text.includes('payroll') || text.includes('salary')) {
-        return 'You can view your payslip in the Payroll system under My Payslips.';
+        return 'For payslips or payroll records, open the Payroll system or the HRIS payroll section if available. If you cannot access the record, contact HR or Payroll support.';
     }
 
     if (text.includes('it') || text.includes('ticket') || text.includes('support') || text.includes('helpdesk')) {
@@ -174,18 +197,30 @@ function getPortalFallbackResponse(userMessage, memoryMatches = []) {
         return 'You can check the company holiday list in the Company Policies section of the portal.';
     }
 
-    return 'I can help with leave, payslips, IT support, gate pass, entry pass, and portal navigation. Ask me a short question and I will point you to the right system.';
+    if (memoryMatches.length) {
+        const bestMatch = memoryMatches[0];
+        const snippet = extractRelevantSnippet(bestMatch.content, normalizeTokens(userMessage));
+        return `${snippet}\n\nSource: ${bestMatch.title}${bestMatch.url ? ` - ${bestMatch.url}` : ''}`;
+    }
+
+    return 'I do not have an exact saved policy for that yet, but I can still help. For portal access or work requests, start from the GMC Portal search, then check HRIS for HR items, Payroll for payslips, Support Ticket for IT issues, GatePass for gate access, or Entry Pass for visitors. Add the exact process to server/data/genmil_consciousness if you want me to remember it permanently.';
 }
 
-function buildOpenAiInput(messages, systemInstruction) {
-    const input = [];
+function buildGenMilInstruction(systemInstruction, memoryContext) {
+    return `${systemInstruction || ''}
 
-    if (systemInstruction) {
-        input.push({
-            role: 'system',
-            content: systemInstruction
-        });
-    }
+You are GeMil, the General Milling Corporation portal assistant.
+Use the GenMil consciousness and GMC memory as your primary source of truth.
+Answer every user question as helpfully as possible. If exact company information is missing, say what is known, give the best next step, and ask one short follow-up question only when needed.
+Do not invent policy details, dates, rates, contacts, approvals, or legal/HR commitments. If a topic needs official confirmation, say which department or portal system should confirm it.
+Keep answers concise, direct, and practical for GMC employees.
+For portal tasks, point users to the correct system or workflow.
+
+${memoryContext ? `Relevant local memory:\n${memoryContext}` : ''}`.trim();
+}
+
+function buildOpenAiInput(messages) {
+    const input = [];
 
     messages.forEach((message) => {
         const role = message?.role === 'model' || message?.role === 'assistant' ? 'assistant' : 'user';
@@ -200,6 +235,20 @@ function buildOpenAiInput(messages, systemInstruction) {
     });
 
     return input;
+}
+
+function buildOpenAiTools() {
+    if (!openAiVectorStoreId) {
+        return undefined;
+    }
+
+    return [
+        {
+            type: 'file_search',
+            vector_store_ids: [openAiVectorStoreId],
+            max_num_results: 6
+        }
+    ];
 }
 
 app.post('/api/chat', async (req, res) => {
@@ -217,14 +266,12 @@ app.post('/api/chat', async (req, res) => {
         }
 
         const memoryContext = buildMemoryContext(memoryMatches, latestUserMessage);
+        const tools = buildOpenAiTools();
         const response = await client.responses.create({
             model: modelId,
-            input: buildOpenAiInput(
-                messages,
-                memoryContext
-                    ? `${systemInstruction || ''}\n\nUse this local GMC website memory if relevant:\n${memoryContext}`.trim()
-                    : systemInstruction
-            )
+            instructions: buildGenMilInstruction(systemInstruction, memoryContext),
+            input: buildOpenAiInput(messages),
+            ...(tools ? { tools } : {})
         });
 
         const aiText = response.output_text?.trim();
@@ -278,6 +325,7 @@ app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
     console.log(`Using OpenAI Model: ${modelId}`);
     console.log(`Loaded portal memory docs: ${portalMemoryDocs.length}`);
+    console.log(`OpenAI File Search: ${openAiVectorStoreId ? `enabled (${openAiVectorStoreId})` : 'disabled'}`);
     if (!hasValidOpenAiKey) {
         console.warn('OpenAI API key is missing or still set to the placeholder value in server/config/.env');
     }
