@@ -51,6 +51,24 @@ function getLatestUserMessage(messages = []) {
     return '';
 }
 
+function getPreviousDirectorySubject(messages = []) {
+    for (let i = messages.length - 2; i >= 0; i -= 1) {
+        const message = messages[i];
+        if (message?.role !== 'user') continue;
+
+        const text = message.parts
+            ?.map((part) => part?.text || '')
+            .join(' ')
+            .trim();
+
+        if (text && searchTelephoneDirectory(text, 1).length) {
+            return text;
+        }
+    }
+
+    return '';
+}
+
 function listMarkdownFiles(dir) {
     if (!fs.existsSync(dir)) {
         return [];
@@ -191,6 +209,10 @@ function formatDirectoryAnswer(matches) {
 
 function isDirectoryQuestion(text) {
     return /\b(local|telephone|phone|extension|directory|contact|number)\b/i.test(text);
+}
+
+function getDirectoryFallbackPrompt() {
+    return 'Which local number do you need? Please send the department, person, area, or local number, for example: "local number for IT", "payroll local", "main gate", or "2527".';
 }
 
 function findRelevantMemory(userMessage) {
@@ -354,6 +376,23 @@ app.post('/api/chat', async (req, res) => {
 
         if (!messages || !Array.isArray(messages)) {
             return res.status(400).json({ error: 'Messages array is required' });
+        }
+
+        if (isDirectoryQuestion(latestUserMessage)) {
+            let directoryMatches = searchTelephoneDirectory(latestUserMessage);
+
+            if (!directoryMatches.length) {
+                const previousSubject = getPreviousDirectorySubject(messages);
+                if (previousSubject) {
+                    directoryMatches = searchTelephoneDirectory(previousSubject);
+                }
+            }
+
+            return res.json({
+                text: directoryMatches.length
+                    ? formatDirectoryAnswer(directoryMatches)
+                    : getDirectoryFallbackPrompt()
+            });
         }
 
         if (!hasValidOpenAiKey || !client) {
